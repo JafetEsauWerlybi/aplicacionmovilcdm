@@ -1,0 +1,7 @@
+{
+  "name": "casamariscomovil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
