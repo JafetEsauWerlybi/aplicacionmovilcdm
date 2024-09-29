@@ -75,3 +75,49 @@ Dentro de la estrategia de versionamiento se mencionan las ramas para cada tarea
 ## URL del GitHub
 
 [Repositorio del Proyecto](https://github.com/JafetEsauWerlybi/aplicacionmovilcdm)
+
+## Dependencias
+Este proyecto utiliza las siguientes dependencias:
+
+- **Ionic Framework**: Para el desarrollo de aplicaciones móviles.
+- **Angular**: Para la construcción de la interfaz de usuario y la gestión de la lógica de la aplicación.
+- **Cordova**: Para acceder a las funciones nativas del dispositivo.
+- **Capacitor**: Para integrar aplicaciones web con las capacidades nativas de los dispositivos móviles.
+- **RxJS**: Para la programación reactiva y la gestión de eventos.
+- **Node.js**: Para ejecutar el entorno de desarrollo y gestionar paquetes.
+
+## Instalación
+Para instalar las dependencias necesarias y configurar el proyecto, sigue estos pasos:
+
+1. **Instala Node.js**:
+   - Asegúrate de tener Node.js instalado. Puedes descargarlo desde [Node.js](https://nodejs.org/).
+
+2. **Instala Ionic CLI**:
+   - Abre tu terminal y ejecuta el siguiente comando para instalar Ionic CLI globalmente:
+     ```bash
+     npm install -g @ionic/cli
+     ```
+
+3. **Clona el Repositorio**:
+   - Clona el repositorio en tu máquina local:
+     ```bash
+     git clone https://github.com/JafetEsauWerlybi/aplicacionmovilcdm.git
+     ```
+
+4. **Navega al Directorio del Proyecto**:
+   - Cambia al directorio del proyecto:
+     ```bash
+     cd aplicacionmovilcdm
+     ```
+
+5. **Instala las Dependencias del Proyecto**:
+   - Ejecuta el siguiente comando para instalar las dependencias necesarias:
+     ```bash
+     npm install
+     ```
+
+6. **Ejecuta la Aplicación**:
+   - Finalmente, puedes iniciar la aplicación en un entorno de desarrollo ejecutando:
+     ```bash
+     ionic serve
+     ```
