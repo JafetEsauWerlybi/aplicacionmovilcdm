@@ -47,6 +47,7 @@ Se ha seleccionado **GitHub Flow** como la estrategia de versionamiento más ade
 GitHub Flow se integra perfectamente con prácticas de integración continua (CI). Al realizar cambios en ramas individuales y abrir "pull requests", se pueden configurar pipelines de CI que automáticamente ejecuten pruebas y verifiquen que el código no rompa la funcionalidad existente antes de fusionar los cambios en la rama principal. Esto no solo mejora la calidad del código, sino que también asegura que la aplicación esté en un estado constante de preparación para el despliegue, lo que es fundamental para un desarrollo ágil y eficiente.
 
 ---
+![](https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/imagen_2024-09-29_120427524.png)
 
 # Estrategia de despliegue del proyecto
 
