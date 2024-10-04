@@ -9,7 +9,9 @@ export class InicioPage implements OnInit {
 
   constructor() { }
 
+  ruta="/login";
   ngOnInit() {
   }
+
 
 }
