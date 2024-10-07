@@ -1,0 +1,50 @@
+<div class="flex flex-col items-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-1">    
+  <h1 class="text-3xl font-bold text-black mb-0">Mis pedidos</h1> <!-- Reducir margen inferior -->
+</div>
+
+<div *ngIf="misPedidos.Pedidos.length === 0">
+  <p>No tienes pedidos.</p>
+</div>
+<div *ngIf="misPedidos.Pedidos.length > 0" class="m-4">
+  <div *ngFor="let pedido of misPedidos.Pedidos">
+    <div class="bg-white rounded-lg shadow-md p-10 w-full max-w-lg" >
+      <div class="flex items-center justify-center mb-4">
+          <div>
+              <p class="MuiTypography-root MuiTypography-body1 text-xl text-gray-600 css-9l3uo3">
+                Fecha: {{ pedido.Fecha | date:'dd/MM/yyyy HH:mm' }} hrs
+              </p>
+          </div>
+      </div>
+      <div class="mb-4 relative">
+          <div class="space-y-8">
+
+              <div class="flex items-center relative">
+                  <svg class="w-10 h-10 text-gray-400 ml-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <span class="MuiTypography-root MuiTypography-text text-xl text-end css-1uk1gs8">
+                    Dirección {{ pedido.Direccion.Calle }} {{ pedido.Direccion.Colonia }} {{ pedido.Direccion.NumeroExterior }} {{ pedido.Direccion.NumeroInterior}} 
+                  </span>
+              </div>
+          </div>
+      </div>
+      <div *ngFor="let producto of pedido.Productos">
+        <div class="space-y-2 mb-4">
+            <div class="flex justify-between">
+                <span class="MuiTypography-root MuiTypography-text text-xl css-1uk1gs8">{{ producto.Cantidad}} x {{ producto.Nombre}}</span>
+                <span class="MuiTypography-root MuiTypography-text text-xl font-bold css-1uk1gs8">${{ producto.Precio}}</span>
+            </div>
+        </div>
+      </div>
+    <div class="space-y-2 mb-4">
+      <div class="flex justify-between">
+          <span class="MuiTypography-root MuiTypography-text text-xl css-1uk1gs8">Total</span>
+          <span class="MuiTypography-root MuiTypography-text text-xl font-bold css-1uk1gs8">${{ pedido.Total}}</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,15 @@ const routes: Routes = [
   {
     path: 'token',
     loadChildren: () => import('./token/token.module').then( m => m.TokenPageModule)
+  },  {
+    path: 'cambiarpassword',
+    loadChildren: () => import('./cambiarpassword/cambiarpassword.module').then( m => m.CambiarpasswordPageModule)
+  },
+  {
+    path: 'pagarcarrito',
+    loadChildren: () => import('./pagarcarrito/pagarcarrito.module').then( m => m.PagarcarritoPageModule)
   }
+
 
 
 ];
