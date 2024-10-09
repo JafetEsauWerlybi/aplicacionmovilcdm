@@ -7,8 +7,7 @@ import { Pedidos } from '../interface/pedidos';
   providedIn: 'root'
 })
 export class PedidosService {
-  private apiUrl = 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=6'; // Cambia esto por tu URL de API
-
+  private apiUrl = 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=6';
   constructor(private http: HttpClient) { }
 
   getPedidos(){
