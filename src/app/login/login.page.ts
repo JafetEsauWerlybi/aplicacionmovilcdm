@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { UserStorageService } from '../services/user-storage.service';  
+import { UserData } from '../interface/userData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,19 +17,20 @@ export class LoginPage implements OnInit {
   traerDatosURL: string = environment.apiEndpoints.traerDatosUsuario;
 
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, 
+    private userStorageService: UserStorageService, 
+    private router: Router) { }
 
   ngOnInit() {
+
   }
 
   onSubmit() {
     if(this.email.length >0 && this.password.length >0){
       var result = this.login(); 
-      
     }else{
 
       this.presentAlertFalla();
-
     }
     
   }
@@ -78,8 +82,11 @@ export class LoginPage implements OnInit {
     });
     if (response.ok) {
       const userData = await response.json();
-      console.log(userData)
+      this.userStorageService.guardarUsuario(userData);
+      this.router.navigate(['/home/tabs/tab1']);
     }
   }
+ 
+  
   
 }
