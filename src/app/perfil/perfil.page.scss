@@ -1,0 +1,15 @@
+.boton-chido {
+    background-color: #16a34a; /* bg-green-600 */
+    color: white; /* text-white */
+    padding-left: 5rem; /* px-20 */
+    padding-right: 5rem; /* px-20 */
+    padding-top: 0.5rem; /* py-2 */
+    padding-bottom: 0.5rem; /* py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    transition: background-color 0.3s ease;
+  }
+  
+  .boton-chido:hover {
+    background-color: #15803d; /* hover:bg-green-700 */
+  }
+  

@@ -1,1 +1,38 @@
-
+ion-tab-bar {
+    --background: #fff;
+  }
+  
+  .custom-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-tab ion-icon {
+    font-size: 24px;
+    color: #b3b3b3;
+  }
+  
+  .custom-tab ion-label {
+    font-size: 12px;
+    color: #b3b3b3;
+  }
+  
+  .custom-tab.tab-selected {
+    background: linear-gradient(135deg, #1d7e0a, #8eff5a);
+    border-radius: 20px;
+    padding: 10px 20px;
+  }
+  
+  .custom-tab.tab-selected ion-icon,
+  .custom-tab.tab-selected ion-label {
+    color: white;
+  }
+  
+  .custom-tab.tab-selected ion-icon {
+    font-size: 26px; /* Agrandar el ícono cuando esté seleccionado */
+  }
+  

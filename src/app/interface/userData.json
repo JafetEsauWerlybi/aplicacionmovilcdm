@@ -1,0 +1,12 @@
+{
+    "idUsuario": 20,
+    "Nombre": "Jafet Esaú",
+    "ApellidoPaterno": "Guzmán",
+    "ApellidoMaterno": "Martínez",
+    "Correo": "20211041@uthh.edu.mx",
+    "Telefono": "7711425326",
+    "Rol": 1,
+    "EstadoCuenta": "Activo",
+    "Token": "c0ad508a1688a1f7b3dfdb2b4f47373e45b894a5b6d3343e426aebbfc86c414e",
+    "Icono": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1718297913788_WhatsApp%20Image%202024-06-12%20at%208.08.58%20PM.jpeg"
+}

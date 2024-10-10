@@ -1,17 +1,102 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" >
+  <div class="p-4 mr-2 ml-2">
+    <p class="text-2xl text-center font-bold mt-5">Home</p>
+    <ion-searchbar class="mt-5" show-cancel-button="focus" placeholder=""></ion-searchbar>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="shadow-md bg-green-700 text-white p-6 mr-2 ml-2 rounded-[14px] flex justify-between items-center max-w-md m-2 mb-5 mt-8">
+      <div>
+        <h3 class="text-lg font-bold">Para la dirección: Calle ajolote</h3>
+        <p class="text-md">Avenida el Rosal #19</p>
+        <div class="bg-white text-orange-600 text-xs font-semibold px-2 py-1 rounded-full inline-block mt-2">
+          2.4 km
+        </div>
+      </div>
+      
+      <div>
+        <ion-icon name="chevron-forward-outline" class="text-white text-xl"></ion-icon>
+      </div>
+    </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <div class="shadow-md flex bg-gray-200 rounded-[14px] justify-center items-center pr-2 pl-2 ">
+      <div class="flex flex-col p-2 w-3/5">
+        <p class="font-bold text-2xl ">Promocion 2x1 </p>
+        <p class="text-md text-gray-500 ">Visita nuestra sucursal no faltes te esperamos</p>
+       
+      </div>
+      <div class="flex items-center h-25 justify-center items-center ml-2 mr-2  ">
+        <img class=" w-[100px] h-full object-cover object-center" src="../../assets/promocion.png"/>
+      </div>
+    </div>
+
+    <div class="pr-2 pl-2 mt-8">
+      <p class="font-bold text-lg mb-4 ">Mejores platillos de la casa</p>
+      <div class="flex overflow-x-auto space-x-4">
+
+        <div class="min-w-[150px] rounded-md m-2">
+          <div class="h-[150px] w-full overflow-hidden rounded-[20px]">
+            <img src="../../assets/platillo.png" alt="Hamburguesa" class="h-full w-full object-cover object-center rounded-[20px]">
+          </div>
+          <div class="mt-4 flex justify-between items-center pr-2 pl-2">
+            <div>
+              <h3 class="text-md font-bold text-gray-700">
+                <a href="#">Hamburguesa</a>
+              </h3>
+            </div>
+            <div class="flex ml-2">
+              <ion-icon name="star" class="w-5 h-5 text-yellow-500 mr-1"></ion-icon><span>4.5</span>
+            </div> 
+          </div>
+          <div class="mt-2 flex  justify-between pr-2 pl-2 pb-2">
+            <div>
+              <h3 class="text-md font-bold text-gray-700">95$</h3>
+            </div>
+          </div>
+        </div>
+      
+        <div class="min-w-[150px] rounded-md m-2">
+          <div class="h-[150px] w-full overflow-hidden rounded-[20px]">
+            <img src="../../assets/platillo2.png" alt="Hamburguesa" class="h-full w-full object-cover object-center rounded-[20px]">
+          </div>
+          <div class="mt-4 flex justify-between items-center pr-2 pl-2">
+            <div>
+              <h3 class="text-md font-bold text-gray-700">
+                <a href="#">Hamburguesa</a>
+              </h3>
+            </div>
+            <div class="flex ml-2">
+              <ion-icon name="star" class="w-5 h-5 text-yellow-500 mr-1"></ion-icon><span>4.5</span>
+            </div>    
+          </div>
+          <div class="mt-2 flex justify-between pr-2 pl-2 pb-2">
+            <div>
+              <h3 class="text-md font-bold text-gray-700">95$</h3>
+            </div>
+          </div>
+        </div>
+      
+        <div class="min-w-[150px] rounded-md m-2">
+          <div class="h-[150px] w-full overflow-hidden rounded-[20px]">
+            <img src="../../assets/platillo3.png" alt="Hamburguesa" class="h-full w-full object-cover object-center rounded-[20px]">
+          </div>
+          <div class="mt-4 flex justify-between items-center  pl-2">
+            <div>
+              <h3 class="text-md font-bold text-gray-700">
+                <a href="#">Hamburguesa</a>
+              </h3>
+            </div>
+            <div class="flex justify-center items-center ml-2">
+              <ion-icon name="star" class="w-5 h-5 text-yellow-500 mr-1"></ion-icon><span>4.5</span>
+            </div> 
+          </div>
+          <div class="mt-2 flex justify-between pr-2 pl-2 pb-2">
+            <div>
+              <h3 class="text-md font-bold text-gray-700">95$</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
 </ion-content>
