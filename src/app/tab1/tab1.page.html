@@ -1,17 +1,119 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" >
+  <div class="p-4 mr-2 ml-2">
+    <p class="text-2xl text-center font-bold mt-5 mb-4">Home</p>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="flex-1">
+      <input type="text" placeholder="Healthy Food" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-yellow-500" />
+    </div>
+    
+    <div class="shadow-md bg-green-700 text-white p-6  rounded-[14px] flex justify-between items-center max-w-md mb-5 mt-8">
+      <div>
+        <h3 class="text-lg font-bold">Para la dirección: Calle ajolote</h3>
+        <p class="text-md">Avenida el Rosal #19</p>
+        <div class="bg-white text-orange-600 text-xs font-semibold px-2 py-1 rounded-full inline-block mt-2">
+          2.4 km
+        </div>
+      </div>
+      
+      <div>
+        <ion-icon name="chevron-forward-outline" class="text-white text-xl"></ion-icon>
+      </div>
+    </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <div class="">
+      <div class="bg-green-400 rounded-2xl p-4 w-full h-[180px] shadow-lg relative">
+        <!-- Logo de la empresa y botón de guardar -->
+        <div class="flex justify-between items-start">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <img src="https://scontent.fmex10-1.fna.fbcdn.net/v/t39.30808-1/454348975_471022365692065_5380072197498364793_n.jpg?stp=dst-jpg_s200x200&_nc_cat=107&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeFTW77Y7Oc_V1PP53rY6EfllKKjr-2y7MuUoqOv7bLsy6zs0jUcTLmS2x93OsGvz1IcvY1yzDjGv7M688081B3q&_nc_ohc=4AItO9WfcDYQ7kNvgHVvogh&_nc_ht=scontent.fmex10-1.fna&_nc_gid=A_rVewD2ETMV6fEHe3f_-eG&oh=00_AYA5yae_EdWe42FjxVc21ASh5Sw3cN0GuRzRpHe3nFw-2A&oe=6709352C" alt="Logo" class="w-8 h-8 rounded-full">
+            <div class="ml-2">
+              <h2 class="text-white font-bold">La Casa del Marisco</h2>
+              <p class="text-gray-200 text-sm">Promocion</p>
+            </div>
+            <!-- Indicador de estado -->
+            <span class="ml-2 text-orange-500">●</span>
+          </div>
+    
+          <!-- Botón Save -->
+          <button class="bg-white text-gray-600 text-sm font-bold px-2 py-1 rounded-lg">
+            Save
+          </button>
+        </div>
+    
+       <div class="flex flex-row items-center justify-between ">
+        <div class="flex justify-center">
+          <img src="../../assets/platillo.png" alt="Pizza" class="ml-4 w-[100px] h-[100px] object-cover">
+        </div>
+    
+        <div class="mt-2 text-white pl-4">
+          <h3 class="text-lg font-bold">Promocion <span class="text-green-800">2x1</span> jueves </h3>
+          <p class="text-sm text-gray-200">Price</p>
+          <p class="text-xl font-bold pb-5">$9.95</p>
+        </div>
+       </div>
+       
+      </div>
+    </div>
+
+    <div class="pr-2 pl-2 mt-8">
+      <p class="font-black text-xl mb-4 ">Mejores <span class="text-orange-600">platillos</span> de la casa</p>
+      <div class="flex overflow-x-auto space-x-4">
+
+        <div class="min-w-[150px] rounded-md m-2">
+          <div class="h-[120px] w-full overflow-hidden rounded-[20px]">
+            <img src="../../assets/platillo.png" alt="Hamburguesa" class="h-[120px] w-[120px] object-cover object-center rounded-[20px]">
+          </div>
+          <div class="mt-2 flex justify-between items-center ">
+            <h2 class="text-lg font-bold">Thai Spaghetti</h2>
+            <div class="flex ml-2">
+              <ion-icon name="star" class="w-5 h-5 text-yellow-500 mr-1"></ion-icon><span>4.5</span>
+            </div> 
+          </div>   
+          <p class="text-sm text-gray-500">Fresh Tomato</p>
+          <div class="flex justify-between items-center mt-2">
+            <span class="font-bold">$12.00</span>  
+            <ion-icon name="heart-outline" class="w-5 h-5"></ion-icon>
+          </div>
+
+        </div>
+      
+        <div class="min-w-[150px] rounded-md m-2">
+          <div class="h-[120px] w-full overflow-hidden rounded-[20px]">
+            <img src="../../assets/platillo2.png" alt="Hamburguesa" class="h-[120px] w-[120px] object-cover object-center rounded-[20px]">
+          </div>
+          <div class="mt-4 flex justify-between items-center ">
+            <h2 class="text-lg font-bold">Thai Spaghetti</h2>
+            <div class="flex ml-2">
+              <ion-icon name="star" class="w-5 h-5 text-yellow-500 mr-1"></ion-icon><span>4.5</span>
+            </div> 
+          </div>   
+          <p class="text-sm text-gray-500">Fresh Tomato</p>
+          <div class="flex justify-between items-center mt-2">
+            <span class="font-bold">$12.00</span>  
+            <ion-icon name="heart-outline" class="w-5 h-5"></ion-icon>
+          </div>
+        </div>
+      
+        <div class="min-w-[150px] rounded-md m-2">
+          <div class="h-[120px] w-full overflow-hidden rounded-[20px]">
+            <img src="../../assets/platillo3.png" alt="Hamburguesa" class="h-[120px] w-[120px] object-cover object-center rounded-[20px]">
+          </div>
+          <div class="mt-2 flex justify-between items-center ">
+            <h2 class="text-lg font-bold">Thai Spaghetti</h2>
+            <div class="flex ml-2">
+              <ion-icon name="star" class="w-5 h-5 text-yellow-500 mr-1"></ion-icon><span>4.5</span>
+            </div> 
+          </div>   
+          <p class="text-sm text-gray-500">Fresh Tomato</p>
+          <div class="flex justify-between items-center mt-2">
+            <span class="font-bold">$12.00</span>  
+            <ion-icon name="heart-outline" class="w-5 h-5"></ion-icon>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
 </ion-content>
