@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, isPlatform } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { UserStorageService } from '../services/user-storage.service';  
-import { UserData } from '../interface/userData';
-import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
+import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
+
 
 @Component({
   selector: 'app-login',
@@ -14,27 +15,55 @@ export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
   loginUrl: string = environment.apiEndpoints.loginUrl;
-  traerDatosURL: string = environment.apiEndpoints.traerDatosUsuario;
+  bol : boolean = false;
+  usuario: User | null = null;
+  
 
-
-  constructor(private alertController: AlertController, 
+  constructor(
+    private alertController: AlertController, 
     private userStorageService: UserStorageService, 
-    private router: Router) { }
+    private serviciosLogin: LoginService) {
+      
+      if(!isPlatform('capacitor')){
+        GoogleAuth.initialize();
+      }
+     }
 
   ngOnInit() {
+    
+  }
 
+  async long(){
+    this.usuario = await GoogleAuth.signIn();
+    this.email = this.usuario.email;
+    this.bol = await this.serviciosLogin.verificarCorreo(this.email);
+    if (!this.bol){
+      await this.presentAlertFalla('No encontramos una cuenta asociada a ese correo');
+    }
+    else{
+      await this.presentAlert();
+      this.serviciosLogin.obtenerDatos(this.email);
+    }
+    console.log('user: ', this.email);
   }
 
   onSubmit() {
     if(this.email.length >0 && this.password.length >0){
       var result = this.login(); 
     }else{
-
-      this.presentAlertFalla();
+      this.presentAlertFalla('Captura tus datos correctamente por favor');
     }
-    
   }
 
+  async login(){
+    this.bol = await this.serviciosLogin.login(this.email, this.password);
+    if(this.bol){
+      await this.serviciosLogin.obtenerDatos(this.email);
+    }
+    else this.presentAlertFalla('Los datos ingresados han sido erroneos'); 
+  }
+
+  //alertas nada más
   async presentAlert() {
     const alert = await this.alertController.create({
       header: '¡Éxito!',
@@ -44,49 +73,14 @@ export class LoginPage implements OnInit {
   
     await alert.present();
   }
-  async presentAlertFalla() {
+  async presentAlertFalla(fallo:string) {
     const alert = await this.alertController.create({
       header: 'Falla!',
-      message: 'Los datos se han guardado correctamente.',
-      buttons: ['Aceptar']
+      message: fallo,
+      buttons: ['Reintentar']
     });
   
     await alert.present();
   }
-
-
-  async login(){
-      const data = new FormData();
-      data.append("Correo", this.email);
-      data.append("Contrasena", this.password);
-      data.append("ip", '212121'); 
-      fetch(this.loginUrl , {
-        method: "POST",
-        body: data,
-      }).then((res) => res.json())
-      .then((result)=>{
-        if (result =="Error en tus credenciales"){
-          this.presentAlertFalla()
-        }
-        if(result=="Contraseña correcta"){
-          this.presentAlert()
-          this.obtenerDatos()
-        }
-      }
-    )
-  }
-
-  async obtenerDatos(){
-    const response = await fetch(this.traerDatosURL+ this.email,{
-      method: "GET",
-    });
-    if (response.ok) {
-      const userData = await response.json();
-      this.userStorageService.guardarUsuario(userData);
-      this.router.navigate(['/home/tabs/tab1']);
-    }
-  }
- 
-  
   
 }
