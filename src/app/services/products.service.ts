@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from 'src/environments/environment';
 import { Products } from '../interface/products';
 
 @Injectable({
@@ -8,13 +8,14 @@ import { Products } from '../interface/products';
 })
 export class ProductsService {
 
+  productosURl = environment.apiEndpointsProductos.traerProductos;
+  
   constructor(
     private http: HttpClient
   ) { }
 
   getALLProducts(){
-    const path="https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos";
-    return this.http.get<Products[]>(path);
+    return this.http.get<Products[]>(this.productosURl);
   }
 
 }
