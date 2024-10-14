@@ -25,8 +25,7 @@ export const environment = {
   apiEndpointsPedidos:{
     agregarPedido: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/AgregarPedido',
     obtenerPedidos: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=',
-  }
-
+  },
 };
 
 /*

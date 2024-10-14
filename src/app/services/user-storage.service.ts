@@ -31,4 +31,18 @@ export class UserStorageService {
     await this._storage?.remove('user');
     console.log('Datos del usuario eliminados del storage');
   }
+
+  async guardarEmail(email:string){
+    await this._storage?.set('email', email);
+    //console.log(await this.traerEmailGuardado());
+  }
+  async traerEmailGuardado() {
+    const email = await this._storage?.get('email');
+    return email;
+  }
+
+  async borrarEmailGuardado() {
+    await this._storage?.remove('email');
+    //console.log('Datos del usuario eliminados del storage');
+  }
 }
