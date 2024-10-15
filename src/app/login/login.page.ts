@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { UserStorageService } from '../services/user-storage.service';  
 import { LoginService } from '../services/login.service';
 import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
+import { AlertasService } from '../services/alertas.service';
 
 
 @Component({
@@ -19,8 +20,7 @@ export class LoginPage implements OnInit {
   usuario: User | null = null;
   
 
-  constructor(
-    private alertController: AlertController, 
+  constructor( private alertaService: AlertasService,
     private userStorageService: UserStorageService, 
     private serviciosLogin: LoginService) {
       
@@ -38,20 +38,20 @@ export class LoginPage implements OnInit {
     this.email = this.usuario.email;
     this.bol = await this.serviciosLogin.verificarCorreo(this.email);
     if (!this.bol){
-      await this.presentAlertFalla('No encontramos una cuenta asociada a ese correo');
+      await this.alertaService.presentAlertFalla('No encontramos una cuenta asociada a ese correo');
     }
     else{
-      await this.presentAlert();
+      await this.alertaService.presentAlert('Exito se guardaron correctamente los datos');
       this.serviciosLogin.obtenerDatos(this.email);
     }
-    console.log('user: ', this.email);
+    //console.log('user: ', this.email);
   }
 
   onSubmit() {
     if(this.email.length >0 && this.password.length >0){
       var result = this.login(); 
     }else{
-      this.presentAlertFalla('Captura tus datos correctamente por favor');
+      this.alertaService.presentAlertFalla('Captura tus datos correctamente por favor');
     }
   }
 
@@ -59,28 +59,12 @@ export class LoginPage implements OnInit {
     this.bol = await this.serviciosLogin.login(this.email, this.password);
     if(this.bol){
       await this.serviciosLogin.obtenerDatos(this.email);
+      this.alertaService.presentAlert('Bienvenido de nuevo, disfruta tu estancia'); 
     }
-    else this.presentAlertFalla('Los datos ingresados han sido erroneos'); 
+    else this.alertaService.presentAlertFalla('Los datos ingresados han sido erroneos'); 
   }
 
   //alertas nada más
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: '¡Éxito!',
-      message: 'Los datos se han guardado correctamente.',
-      buttons: ['Aceptar']
-    });
-  
-    await alert.present();
-  }
-  async presentAlertFalla(fallo:string) {
-    const alert = await this.alertController.create({
-      header: 'Falla!',
-      message: fallo,
-      buttons: ['Reintentar']
-    });
-  
-    await alert.present();
-  }
+ 
   
 }
