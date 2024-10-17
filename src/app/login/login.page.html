@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true">
+  <div class="m-5 p-2">
+    <img class="p-4" src="../../assets/logo.png">
+    <h1 class="p-4 font-bold text-2xl" >Bienvenido!!</h1>
+    <p class="ml-4">Inicia sesion en tu cuenta</p>
+    <div class="p-4">
+      <form (ngSubmit)="onSubmit()">
+        <label class="text-lg font-bold">Correo</label>
+        <input type="text" name="email" [(ngModel)]="email" class="block mt-2 w-full h-12 text-lg border-0 rounded-[10px] py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset placeholder:text-gray-400" placeholder="adolfo@gmail.com">
+        <div class="mt-5">
+          <label class="text-lg font-bold">Contraseña</label>
+          <input type="password" name="password" [(ngModel)]="password" class="block mt-2 w-full h-12 text-lg border-0 rounded-[10px] py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset placeholder:text-gray-400" placeholder="****">
+        </div>
+        <div class="justify-end items-end mt-5">
+          <p class="text-gray-600 text-end"><a href="recuperar">Olvide mi contraseña</a></p>
+        </div>
+        <div class="justify-center mt-5">
+          <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700">Iniciar sesión</button>
+        </div>        
+      </form>
+      <p class="mt-8 text-lg font-normal text-center" style="display: flex; align-items: center;">
+        <span style="flex: 1; height: 1px; background-color: black;"></span>
+        <span style="padding: 0 10px;">o con</span>
+        <span style="flex: 1; height: 1px; background-color: black;"></span>
+      </p>
+      <ion-button expand="full" color="primary" (click)="long()">
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Iniciar sesión con Google
+      </ion-button>
+      <ion-button (click)="loginViaGoogle()" expand="block">Login via Google</ion-button>
+
+    </div>
+  
+    <p class="text-gray-500 text-center mt-10"><a href="">Terminos y condiciones</a></p>
+  </div>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true">
+  <div class="m-5 p-2">
+    <img class="p-4" src="../../assets/logo.png">
+    <h1 class="p-4 font-bold text-2xl mt-15" >Token!!</h1>
+    <p class="ml-4">Se te ha enviado un token de verificacion a tu correo electronico</p>
+    <div class="p-4">
+      <form (submit)="verificarToken()">
+        <p class="text-lg font-bold text-center">Token</p>
+        <div class="flex flex-wrap space-x-2 mt-8 mb-5 justify-center">
+          <input type="text" name="digit1" id="digit1" maxlength="1" class="block w-12 h-12 text-lg border-0 rounded-lg text-center text-gray-900 ring-1 ring-inset" (input)="updateToken()">
+          <input type="text" name="digit2" id="digit2" maxlength="1" class="block w-12 h-12 text-lg border-0 rounded-lg text-center text-gray-900 ring-1 ring-inset" (input)="updateToken()">
+          <input type="text" name="digit3" id="digit3" maxlength="1" class="block w-12 h-12 text-lg border-0 rounded-lg text-center text-gray-900 ring-1 ring-inset" (input)="updateToken()">
+          <input type="text" name="digit4" id="digit4" maxlength="1" class="block w-12 h-12 text-lg border-0 rounded-lg text-center text-gray-900 ring-1 ring-inset" (input)="updateToken()">
+          <input type="text" name="digit5" id="digit5" maxlength="1" class="block w-12 h-12 text-lg border-0 rounded-lg text-center text-gray-900 ring-1 ring-inset" (input)="updateToken()">
+          <input type="text" name="digit6" id="digit6" maxlength="1" class="block w-12 h-12 text-lg border-0 rounded-lg text-center text-gray-900 ring-1 ring-inset" (input)="updateToken()">
+        </div>
+        
+        <ion-button color="" type="submit" class="mt-8 w-full ion-button-login shadow-lg text-white font-bold  text-xl ">Verificar token</ion-button>
+      </form>
+      
+    </div>
+    <p class="text-gray-500 text-center mt-10"><a href="">Terminos y condiciones</a></p>
+  </div>
+</ion-content>
+

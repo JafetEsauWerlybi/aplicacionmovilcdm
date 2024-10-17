@@ -1,0 +1,32 @@
+[
+    {
+        "idProducto": 1,
+        "idCarritoProductos": 46,
+        "Imagen": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1728924644678_platillo.png",
+        "Nombre": "Hamburguesa de camaron",
+        "Cantidad": 1,
+        "Precio": 32,
+        "PrecioUnitario": 32,
+        "idCarrito": 4
+    },
+    {
+        "idProducto": 7,
+        "idCarritoProductos": 47,
+        "Imagen": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1728924621413_platillo2.png",
+        "Nombre": "Coctel pequeño de camarón",
+        "Cantidad": 1,
+        "Precio": 455,
+        "PrecioUnitario": 455,
+        "idCarrito": 4
+    },
+    {
+        "idProducto": 9,
+        "idCarritoProductos": 48,
+        "Imagen": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1728924490173_promocion.png",
+        "Nombre": "Cóctel de camarón mediano",
+        "Cantidad": 1,
+        "Precio": 455,
+        "PrecioUnitario": 455,
+        "idCarrito": 4
+    }
+]
