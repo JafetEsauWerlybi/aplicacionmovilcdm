@@ -8,6 +8,7 @@ export const environment = {
     actualizarToken: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/ActualizarToken',
     verificarToken: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/VerificarToken',
     cambiarPassword: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/RecuperarContrasena',
+    traerToken: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerToken?Telefono=',
   },
   apiEndpointsProductos:{
     traerProductos: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos',
@@ -22,4 +23,13 @@ export const environment = {
     agregarPedido: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/AgregarPedido',
     obtenerPedidos: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=',
   },
+  firebase :{
+    apiKey: "AIzaSyCQrCrhzlzayUbKW9P1laJeakm6Jl0w9l0",
+    authDomain: "casamariscomovil.firebaseapp.com",
+    projectId: "casamariscomovil",
+    storageBucket: "casamariscomovil.appspot.com",
+    messagingSenderId: "1089256107726",
+    appId: "1:1089256107726:web:52bb8017f46098703baa9f"
+  },
 };
+
