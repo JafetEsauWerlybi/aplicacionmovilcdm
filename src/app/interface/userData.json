@@ -1,12 +1,32 @@
-{
-    "idUsuario": 20,
-    "Nombre": "Jafet Esaú",
-    "ApellidoPaterno": "Guzmán",
-    "ApellidoMaterno": "Martínez",
-    "Correo": "20211041@uthh.edu.mx",
-    "Telefono": "7711425326",
-    "Rol": 1,
-    "EstadoCuenta": "Activo",
-    "Token": "c0ad508a1688a1f7b3dfdb2b4f47373e45b894a5b6d3343e426aebbfc86c414e",
-    "Icono": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1718297913788_WhatsApp%20Image%202024-06-12%20at%208.08.58%20PM.jpeg"
-}
+[
+    {
+        "idProducto": 1,
+        "idCarritoProductos": 46,
+        "Imagen": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1728924644678_platillo.png",
+        "Nombre": "Hamburguesa de camaron",
+        "Cantidad": 1,
+        "Precio": 32,
+        "PrecioUnitario": 32,
+        "idCarrito": 4
+    },
+    {
+        "idProducto": 7,
+        "idCarritoProductos": 47,
+        "Imagen": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1728924621413_platillo2.png",
+        "Nombre": "Coctel pequeño de camarón",
+        "Cantidad": 1,
+        "Precio": 455,
+        "PrecioUnitario": 455,
+        "idCarrito": 4
+    },
+    {
+        "idProducto": 9,
+        "idCarritoProductos": 48,
+        "Imagen": "https://iebdlfthbbxohteapyua.supabase.co/storage/v1/object/public/LCDM/1728924490173_promocion.png",
+        "Nombre": "Cóctel de camarón mediano",
+        "Cantidad": 1,
+        "Precio": 455,
+        "PrecioUnitario": 455,
+        "idCarrito": 4
+    }
+]

@@ -1,0 +1,20 @@
+
+<div *ngIf="direcciones.length <= 0" class="flex justify-center items-center mt-8">
+  <ion-spinner name="crescent"></ion-spinner>
+  <p class="ml-2 text-lg">Cargando...</p>
+</div>
+
+<div *ngFor="let direccion of direcciones">
+  <div class="shadow-md bg-green-700 text-white p-6  rounded-[14px] flex justify-between items-center max-w-md mb-5 mt-8">
+    <div>
+      <h3 class="text-lg font-bold">Para la dirección: Calle: {{direccion.Calle}}, {{direccion.Colonia}}</h3>
+      <p class="text-md">{{direccion.Ciudad}}</p>
+      <div class="bg-white text-orange-600 text-xs font-semibold px-2 py-1 rounded-full inline-block mt-2">
+        {{direccion.Referencias}}
+      </div>
+    </div>
+      
+    <div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, isPlatform } from '@ionic/angular';
+import { AlertController, isPlatform, Platform } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { UserStorageService } from '../services/user-storage.service';  
 import { LoginService } from '../services/login.service';
-import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { AlertasService } from '../services/alertas.service';
+import { GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithCredential } from "firebase/auth";
+import { initializeApp } from "firebase/app";
 
 
 @Component({
@@ -18,24 +20,25 @@ export class LoginPage implements OnInit {
   loginUrl: string = environment.apiEndpoints.loginUrl;
   bol : boolean = false;
   usuario: User | null = null;
-  
+  isWeb = false;
+  firebase: any;
 
   constructor( private alertaService: AlertasService,
     private userStorageService: UserStorageService, 
-    private serviciosLogin: LoginService) {
+    private serviciosLogin: LoginService,
+    private platform: Platform) {
       
-      if(!isPlatform('capacitor')){
-        GoogleAuth.initialize();
-      }
+      this.isWeb = this.platform.is('desktop') || this.platform.is('mobileweb') || !(this.platform.is('android') || this.platform.is('ios'));
+        this.firebase = initializeApp(environment.firebase);
      }
 
   ngOnInit() {
-    
+    this.initialize();
   }
 
   async long(){
-    this.usuario = await GoogleAuth.signIn();
-    this.email = this.usuario.email;
+    //this.usuario = await GoogleAuth.signIn();
+    //this.email = this.usuario.email;
     this.bol = await this.serviciosLogin.verificarCorreo(this.email);
     if (!this.bol){
       await this.alertaService.presentAlertFalla('No encontramos una cuenta asociada a ese correo');
@@ -65,6 +68,30 @@ export class LoginPage implements OnInit {
   }
 
   //alertas nada más
- 
-  
+  initialize() {
+    if (this.isWeb) {
+        GoogleAuth.initialize({ grantOfflineAccess: true });
+    }
+}
+  async loginViaGoogle() {
+    try {
+        const user = await GoogleAuth.signIn();
+        if (user) {
+            // Sign in with credential from the Google user.
+            console.log('user: jjs',user)
+            signInWithCredential(getAuth(this.firebase), GoogleAuthProvider.credential(user.authentication.idToken))
+                .then(async (s) => {
+                    const access_token = await s.user.getIdToken();
+                    //await this.localStorageService.set(AppStorageKey.AccessToken, access_token);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            //this.userService.login({ name: user.givenName, email: user.email, imageUrl: user.imageUrl });
+          //this.router.navigateByUrl(AppPagePath.Home);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 }

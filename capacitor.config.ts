@@ -1,13 +1,13 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.mariscomovil',
   appName: 'casamariscomovil',
   webDir: 'www',
   plugins: {
     GoogleAuth: {
       scopes: ['profile', 'email'],
-      serverClientId: '704735693768-lt0fj5pkcdsg7cl4j002eeudaico4pcq.apps.googleusercontent.com', // Web Client ID
+      serverClientId: '1089256107726-u77ggpi9557p2fg9qtnd02asbrie7gnn.apps.googleusercontent.com', // Web Client ID
       forceCodeForRefreshToken: true,
     }
   }
