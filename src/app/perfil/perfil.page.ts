@@ -17,6 +17,10 @@ export class PerfilPage {
   userData!: UserData;
   token!: Token;
 
+  ionViewWillEnter() {
+    this.datosUsuario();
+  }
+  
   constructor(private pedidosService: PedidosService, private perfilService: PerfilService) { }
 
   ngOnInit() {
@@ -32,7 +36,7 @@ export class PerfilPage {
     this.perfilService.traerToken().subscribe({
       next: (data: Token) => {
         this.token = data;
-        console.log('Token recibido en el componente:', this.token);
+        //console.log('Token recibido en el componente:', this.token);
       },
       error: (error) => {
         console.error('Error al traer el token', error);

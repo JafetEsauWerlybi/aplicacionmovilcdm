@@ -7,9 +7,10 @@ import { Products } from '../interface/products';
   providedIn: 'root'
 })
 export class ProductsService {
+  productoSelect!: Products;
 
   productosURl = environment.apiEndpointsProductos.traerProductos;
-  
+  productoSelectUrl = environment.apiEndpointsProductos.traerProductoPorId;
   constructor(
     private http: HttpClient
   ) { }
@@ -17,5 +18,14 @@ export class ProductsService {
   getALLProducts(){
     return this.http.get<Products[]>(this.productosURl);
   }
+
+  obtenerDetallesProducto(idProducto: number){
+    const formdata = new FormData();
+    formdata.append("idProducto", idProducto.toString());
+
+    return this.http.post<Products>(this.productoSelectUrl,formdata);
+  }
+
+
 
 }

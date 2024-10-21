@@ -1,109 +1,44 @@
 <ion-content [fullscreen]="true">
   <div class="p-5">
     <p class="font-bold text-center text-3xl">Mi carrito</p>
-    <p class="text-md mt-5">Revisa cada detalle de tu pedido, puedes cambiar la direccion en la pagina oficial.</p>
+    <p class="text-md mt-5">Revisa cada detalle de tu pedido, puedes cambiar la dirección en la página oficial.</p>
 
-    <div class="shadow-md bg-green-700 text-white p-6 rounded-[14px] flex justify-between items-center max-w-md mb-5 mt-8">
-      <div>
-        <h3 class="text-lg font-bold">Para la dirección: Calle ajolote</h3>
-        <p class="text-md">Avenida el Rosal #19</p>
-        <div class="bg-white text-orange-600 text-xs font-semibold px-2 py-1 rounded-full inline-block mt-2">
-          2.4 km
-        </div>
-      </div>
-      
-      <div>
-        <ion-icon name="chevron-forward-outline" class="text-white text-xl"></ion-icon>
-      </div>
-    </div>
+    <app-direccion></app-direccion>
 
     <p class="text-xl font-bold">Tus productos</p>
 
-    <div class="flex flex-row mt-4 items-center border-t border-1">
-      <div class="max-w-2xl mr-3">
-        <img src="../../assets/platillo3.png" class="h-20 w-20" alt="">
-      </div>
-      <div class="flex flex-col">
-        <div>
-          <p class="text-gray-900">Platillo de crema con mariscos</p>
-        </div>
-        <div class="flex flex-row items-center">
-          <div class="flex justify-between m-2 items-center">
-            <ion-icon name="add-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
-            <span class="font-bold text-xl mr-4">2</span>
-            <ion-icon name="remove-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
-          </div>
-          <div>
-            <p class="font-bold text-xl">120$</p>
-          </div>
-        </div>
-      </div>
+    <div *ngIf="carrito.length <= 0" class="flex justify-center items-center mt-8">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p class="ml-2 text-lg">Cargando...</p>
     </div>
-    <div class="flex flex-row mt-4 items-center border-t border-1">
+        <div *ngFor="let producto of carrito" class="flex flex-row mt-4 items-center border-t border-1">
       <div class="max-w-2xl mr-3">
-        <img src="../../assets/platillo.png" class="h-20 w-20" alt="">
+        <img [src]="producto.Imagen" class="h-20 w-20" alt="{{ producto.Nombre }}">
       </div>
       <div class="flex flex-col">
         <div>
-          <p class="text-gray-900">Platillo de crema con mariscos</p>
+          <p class="text-gray-900">{{ producto.Nombre }}</p>
         </div>
         <div class="flex flex-row items-center">
           <div class="flex justify-between m-2 items-center">
-            <ion-icon name="add-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
-            <span class="font-bold text-xl mr-4">2</span>
-            <ion-icon name="remove-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
+            <button name="add-circle-outline" class="h-6 w-6 mr-4" (click)="quitarCarrito(producto.idProducto, producto.idCarritoProductos)"><ion-icon name="remove-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
+            </button>
+            <span class="font-bold text-xl mr-4">{{ producto.Cantidad }}</span>
+            <button (click)="agregarAlCarrito(producto.idProducto)">
+              <ion-icon name="add-circle-outline" class="h-6 w-6 mr-4"> </ion-icon>
+            </button>
           </div>
           <div>
-            <p class="font-bold text-xl">120$</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-row mt-4 items-center border-t border-1">
-      <div class="max-w-2xl mr-3">
-        <img src="../../assets/platillo2.png" class="h-20 w-20" alt="">
-      </div>
-      <div class="flex flex-col">
-        <div>
-          <p class="text-gray-900">Platillo de crema con mariscos</p>
-        </div>
-        <div class="flex flex-row items-center">
-          <div class="flex justify-between m-2 items-center">
-            <ion-icon name="add-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
-            <span class="font-bold text-xl mr-4">2</span>
-            <ion-icon name="remove-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
-          </div>
-          <div>
-            <p class="font-bold text-xl">120$</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-row mt-4 items-center border-t border-1">
-      <div class="max-w-2xl mr-3">
-        <img src="../../assets/platillo.png" class="h-20 w-20" alt="">
-      </div>
-      <div class="flex flex-col">
-        <div>
-          <p class="text-gray-900">Platillo de crema con mariscos</p>
-        </div>
-        <div class="flex flex-row items-center">
-          <div class="flex justify-between m-2 items-center">
-            <ion-icon name="add-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
-            <span class="font-bold text-xl mr-4">2</span>
-            <ion-icon name="remove-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
-          </div>
-          <div>
-            <p class="font-bold text-xl">120$</p>
+            <p class="font-bold text-xl">{{ producto.Precio }}$</p> 
           </div>
         </div>
       </div>
     </div>
 
-   <div class=" w-full flex justify-center mt-4">
-    <button href="pagarcarrito" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700">
-      Pagar Carrito
-    </button>
-   </div>
+    <div class="w-full flex justify-center mt-4">
+      <button href="pagarcarrito" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700">
+        Pagar Carrito
+      </button>
+    </div>
   </div>
 </ion-content>

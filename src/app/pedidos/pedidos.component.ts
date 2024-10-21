@@ -23,8 +23,7 @@ export class PedidosComponent implements OnInit {
   async datosUsuario() {
     try {
       this.userData = await this.perfilService.obtenerDatosUsuario();
-      console.log('userData:', this.userData);
-      this.cargarPedidos(); // Cargar pedidos solo después de obtener los datos del usuario
+      this.cargarPedidos();
     } catch (error) {
       console.error('Error al obtener datos de usuario', error);
     }
@@ -36,7 +35,6 @@ export class PedidosComponent implements OnInit {
       this.loading = false;
       return;
     }
-
     console.log('usercomponente', this.userData.idUsuario);
     this.pedidosService.getPedidos(this.userData.idUsuario).subscribe(
       (data) => {

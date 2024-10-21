@@ -27,6 +27,8 @@ export const environment = {
   apiEndpointsPedidos:{
     agregarPedido: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/AgregarPedido',
     obtenerPedidos: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=',
+    promociones:'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPromociones'
+
   },
   firebase :{
     apiKey: "AIzaSyCQrCrhzlzayUbKW9P1laJeakm6Jl0w9l0",
