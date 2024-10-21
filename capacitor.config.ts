@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.mariscomovil',
-  appName: 'casamariscomovil',
+  appId: 'com.mariscomovil.movil',
+  appName: 'casamariscomovil', 
   webDir: 'www',
   plugins: {
     GoogleAuth: {

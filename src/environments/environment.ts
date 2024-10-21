@@ -38,6 +38,12 @@ export const environment = {
     messagingSenderId: "1089256107726",
     appId: "1:1089256107726:web:52bb8017f46098703baa9f"
   },
+  stripe:{
+    publishableKey: 'pk_test_51Q2bhrL6Uwo5yj7nQJIPVxVbUWiz48NmkIB4rwvZkVFGZoFO9mEjngGKbeTzG1KtQCgWIiwhgjv3T4KrQDDgIUeO002GVJR4iS',
+    secretKey: 'sk_test_51Q2bhrL6Uwo5yj7nX5MZoB2jI2ZDX26rikyTJEaBCql5V8qsV3lGvnnKoBcgFajYfXlVo6cSE0mglGVOeIIAHjDk00AZ2yCxD1'
+  },
+  api:'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/'
+
 };
 
 /*
