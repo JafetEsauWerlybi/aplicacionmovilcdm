@@ -1,19 +1,52 @@
 <ion-content [fullscreen]="true">
+  <div class="bg-green-600 rounded-b-[150px] h-[220px] pt-8 mb-[100px]">
+    <div class="text-center">
+      <h2 class="parrafo2 text-white font-bold text-4xl mt-2">La Casa Del Marisco</h2>
+    </div>
+    <div class="flex justify-center">
+      <img clas="w-2 h-full" src="../../assets/imagen.png">
+    </div>
+  </div>
   <div class="">
-    <div class="pl-8 pr-8 mt-8 justify-center">
-      <img clas="" src="../../assets/logo.png">
-    </div>
-    <div>
-      <img clas="w-2 h-full " src="../../assets/inicio.png">
-    </div>
-    <p class="font-bold text-2xl text-center mt-6 ml-4 m-r4">Todos nuestros</p>
-    <p class="font-bold text-2xl text-center ml-4 mr-4">productos al alcance de</p>
-    <p class="font-bold text-2xl text-center ml-4 m-r4">tus manos</p>
-    <p class="font-normal text-gray-600 text-md text-center mt-4 pt-4 ml-4 mr-4">Bienvenido ordena lo que mas te guste desde la </p>
-    <p class="font-normal text-gray-600 text-md text-center  ml-4 mr-4">comodidad de tu asiento</p>
+
+    <p class="parrafo font-bold text-2xl text-center mt-2 ml-4 mr-4">Todos <span  class="text-green-600">nuestros</span>
+    </p>
+    <p class="parrafo font-bold text-2xl text-center ml-4 mr-4 "><span class="text-green-600">productos</span> al alcance de</p>
+    <p class="parrafo font-bold text-2xl text-center ml-4 mr-4">tus <span class="text-green-600">manos</span></p>
+    <p class="parrafo font-normal text-gray-600 text-md text-center mt-4 pt-4 ml-4 mr-4">
+      Bienvenido ordena lo que más te guste desde la
+    </p>
+    <p class="parrafo font-normal text-gray-600 text-md text-center ml-4 mr-4">comodidad de tu asiento</p>
     <div class="flex flex-col mr-6 ml-6 pt-5 pr-2 pl-2 mt-5">
-      <ion-button class="ion-button-login shadow-lg text-white font-bold  text-xl "><a href="/login">Login</a></ion-button>
-      <ion-button fill="outline" class="ion-button-registro shadow-lg mt-6 text-xl font-bold text-green-800 ">Registar</ion-button>
+      <ion-button (click)="goToLogin()" class="ion-button-login shadow-lg text-white font-bold text-lg">
+        <a >Login</a>
+      </ion-button>
+      <ion-button fill="outline" class="ion-button-registro shadow-lg mt-6 text-lg font-bold text-gray-600">Registrar</ion-button>
     </div>
   </div>
 </ion-content>
+
+
+<style>
+  .parrafo {
+  font-family: 'Lobster', cursive;
+}
+.parrafo2{
+  font-family: 'Lobster', cursive;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+
+/* Aplica la fuente Roboto Black 900 Italic */
+.font-roboto-italic {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.parrafo3{
+  font-family: 'Archivo Black';
+}
+</style>

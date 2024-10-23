@@ -37,81 +37,110 @@
 
         <div *ngFor="let product of products" class="rounded-[17px] border border-1 border-gray-200 shadow-sm ">
           <div
-            class="aspect-h-1 aspect-w-1 pr-4 pt-2  pl-4 overflow-hidden rounded-[20px]  lg:aspect-none group-hover:opacity-75 lg:h-25">
-            <img [src]="product.Imagen" alt="Front of men&#039;s Basic Tee in black."
+              class="aspect-h-1 aspect-w-1 pr-4 pt-2  pl-4 overflow-hidden rounded-[20px]  lg:aspect-none group-hover:opacity-75 lg:h-25">
+            <img [src]="product.Imagen" alt="Front of men&#039;s Basic Tee in black." (click)="setSelectedProduct(product)"
               class="h-30 w-50  rounded-[20px] object-cover object-center ">
           </div>
-          <div class="p-2">
+          <div class="p-2 " >
             <h2 class="text-lg font-bold truncate"> {{product.Nombre}}</h2>
             <p class="text-sm text-gray-500">Fresh Tomato</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold">${{product.Precio}}</span>
-              <ion-button id="open-modal" expand="block" size="small" color="success" class="z-10">
+              <ion-button  size="small" color="success" class="z-10">
                 <ion-icon slot="icon-only" ios="logo-apple" name="add" size="medium" color="light"></ion-icon>
               </ion-button>
             </div>
           </div>
         </div>
-
+  
       </div>
-
+     
 
       <div #page>
-        <ion-modal #modal trigger="open-modal" [canDismiss]="canDismiss" [presentingElement]="page">
+        <ion-modal #modal [canDismiss]="canDismiss" [presentingElement]="page">
           <ng-template [fullscreen]="true">
-            <ion-content>
-              <div class="p-5">
-                <div class="flex justify-end">
-                  <ion-buttons slot="end">
-                    <ion-button (click)="modal.dismiss()"><ion-icon name="close-outline"
-                        class="h-10 w-10"></ion-icon></ion-button>
-                  </ion-buttons>
-                </div>
-                <div class="mb-2">
-                  <img src="../../assets/platillo.png" alt="Front of men&#039;s Basic Tee in black."
-                    class="h-1/2 w-full ">
+            <ion-content class="bg-gray-100">
+              <!-- Sección superior con la imagen -->
+              <div class="relative bg-gray-100">
+               
+                <img [src]="selectedProduct?.Imagen" alt="Platillo" class="w-full h-60 object-cover rounded-b-lg opacity-90">
+                <!-- Botón de cerrar -->
+                <ion-icon name="close-outline" (click)="modal.dismiss()" class="absolute top-4 left-4 text-gray-600 text-2xl"></ion-icon>
+              </div>
+      
+              <!-- Contenido principal con borde redondeado en la parte superior -->
+              <div class="p-6 bg-white rounded-t-[50px] min-h-full -mt-8 z-20 relative shadow-lg">
+                
+                     <!-- Información de tiempo, porciones, calorías y dificultad -->
+                     <div class="flex justify-around mt-4">
+                      <div class="text-center">
+                        <ion-icon name="time-outline" class="text-yellow-500 text-2xl"></ion-icon>
+                        <p class="text-gray-800 mt-1">35 minsvh</p>
+                      </div>
+                      <div class="text-center">
+                        <ion-icon name="people-outline" class="text-yellow-500 text-2xl"></ion-icon>
+                        <p class="text-gray-800 mt-1">03 servings</p>
+                      </div>
+                      <div class="text-center">
+                        <ion-icon name="flame-outline" class="text-yellow-500 text-2xl"></ion-icon>
+                        <p class="text-gray-800 mt-1">103 Cal</p>
+                      </div>
+                      <div class="text-center">
+                        <ion-icon name="fitness-outline" class="text-yellow-500 text-2xl"></ion-icon>
+                        <p class="text-gray-800 mt-1">Easy</p>
+                      </div>
+                    </div>
+                <!-- Título del platillo y calificación -->
+                <div class="flex justify-between items-center">
+                  <div>
+                    <h2 class="text-xl font-bold text-gray-800 mt-5">{{ selectedProduct?.Nombre }}</h2>
+                      <p class="text-sm text-gray-600">Western</p>
+                  </div>
+                 
                 </div>
 
-              </div>
-              <div class="flex mt-2 pr-4 pl-4 ml-3 items-center">
-                <div class="flex items-center mr-4">
-                  <ion-icon name="alarm-outline" class="h-7 w-7 mr-2"></ion-icon>
-                  <span>40 minutos</span>
+                <div  class="flex justify-between items-center mb-4 mt-4">
+                 
+                  <div class="flex items-center">
+                    <ion-icon name="add-circle-outline" class="text-yellow-500 text-3xl"></ion-icon>
+                    <span class="font-bold text-2xl mx-4">2</span>
+                    <ion-icon name="remove-circle-outline" class="text-yellow-500 text-3xl"></ion-icon>
+                  </div>
+
+                  <div class="flex items-center">
+                    <span class="ml-2 font-bold text-2xl">${{ selectedProduct?.Precio }}</span>
+                  </div>
                 </div>
-                <div class="flex items-center">
-                  <ion-icon name="fast-food-outline" class="h-7 w-7 mr-2"></ion-icon>
-                  <span>Platillo fuerte</span>
+      
+                <div>
+                  <p class="text-md text-gray-600">{{ selectedProduct?.Descripcion }}</p>
                 </div>
-              </div>
-              <div class=" ml-3 p-5">
-                <div class="flex justify-between items-center ">
-                  <p class="font-bold text-start text-2xl mt-4">Platillo de crema con marisco incluidos</p>
-                  <p class="font-bold text-end text-3xl text-red-700">120$</p>
+      
+                <!-- Lista de ingredientes -->
+                <div class="mt-6">
+                  <h3 class="font-bold text-xl text-gray-800">Ingredientes</h3>
+                  <ul class="list-disc list-inside text-gray-700 mt-2">
+                    <li>2 Eggs</li>
+                    <li>1 Cup All purpose flour</li>
+                    <li>1/2 Cup Whole milk</li>
+                    <li>2 Tablespoon Butter</li>
+                  </ul>
                 </div>
-                <p class="font-normal text-start text-md mt-4">Para jhdbjhd jbndjhhnkg kojfotr ho ioftorot jnrtn
-                  oionjrepresentar el stock o la cantidad de un producto en Ionic, puedes usar alguno de los siguientes
-                  iconos</p>
-              </div>
-              <div class="flex justify-start justify-between pr-8 pl-8 mt-4">
-                <p class="font-bold">Todos</p>
-                <p>Platillos</p>
-                <p>Bebidas</p>
-                <p>Postres</p>
-              </div>
-              <div class="p-5 ml-3 flex  justify-center  w-full bg-white ">
-                <div class="flex justify-between m-2 items-center">
-                  <ion-icon name="add-circle-outline" class="h-10 w-10 mr-2"></ion-icon>
-                  <span class="font-bold text-2xl mr-2">2</span>
-                  <ion-icon name="remove-circle-outline" class="h-10 w-10 mr-2"></ion-icon>
+      
+                <!-- Botones para agregar y controlar la cantidad -->
+                <div class="flex justify-between items-center mt-6">
+                  
+                  <ion-button class="ion-button-login text-white w-full font-bold text-[12px]">
+                   Agregar al carrito
+                  </ion-button>
                 </div>
-                <ion-button class="btn-primary  text-white font-bold h-12 px-2 rounded ">
-                  <ion-icon name="cart" class="mr-2"></ion-icon> Agregar al carrito
-                </ion-button>
               </div>
             </ion-content>
           </ng-template>
         </ion-modal>
       </div>
+      
+      
 
     </div>
   </div>

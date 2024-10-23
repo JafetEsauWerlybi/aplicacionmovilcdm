@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertasService } from '../services/alertas.service';
 import { RecuperarpasswordService } from '../services/recuperarpassword.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-recuperar',
@@ -11,7 +12,7 @@ export class RecuperarPage implements OnInit {
   
   email: string = '';
   bol : boolean = false;
-  constructor(private alertaService: AlertasService, private recuperarService: RecuperarpasswordService) { }
+  constructor(private alertaService: AlertasService, private recuperarService: RecuperarpasswordService,private navegacion:NavController) { }
 
   ngOnInit() {
   }
@@ -30,5 +31,8 @@ export class RecuperarPage implements OnInit {
     }
   }
 
+  navToLogin(){
+    this.navegacion.navigateForward('/login')
+  }
   
 }

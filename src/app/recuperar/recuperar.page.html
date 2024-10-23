@@ -1,19 +1,24 @@
 <ion-content [fullscreen]="true">
-    <div class="m-5 p-2">
-      <img class="p-4" src="../../assets/logo.png">
-      <h1 class="p-4 font-bold text-2xl mt-15" >Bienvenido!!</h1>
-      <p class="ml-4">Ingresa tu correo para iniciar el proceso</p>
-      <div class="p-4">
-        <form (ngSubmit)="onSubmit()">
-          <label class="text-lg font-bold">Correo</label>
-          <input type="text" name="email" [(ngModel)]="email" class="block mt-2 w-full h-12 text-lg border-0 rounded-[10px] py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset placeholder:text-gray-400" placeholder="adolof@gmail.com">
-          
-          
-          <ion-button color="" type="submit" class="mt-8 w-full ion-button-login shadow-lg text-white font-bold  text-xl ">Enviar</ion-button>
-        </form>
-        
-      </div>
-      <p class="text-gray-500 text-center mt-10"><a href="">Terminos y condiciones</a></p>
+  <div class="m-4 p-4">
+    <div class="flex justify-between absolute top-4 left-5 right-5 ">
+      <ion-icon (click)="navToLogin()" name="arrow-back-outline" class="h-8 w-8 "></ion-icon>
     </div>
-  </ion-content>
-  
+    <h1 class="text-center font-bold text-2xl mt-15" >Recuperación de <span class="text-green-600">contraseña</span>!!</h1>
+
+    <img class="p-4" src="../../assets/recuperacion.jpg">
+
+    <p class="mb-2">Ingresa tu correo para iniciar el proceso</p>
+    <div class="">
+      <form (ngSubmit)="onSubmit()">
+        <label class="text-lg font-bold">Correo</label>
+        <input type="text" name="email" [(ngModel)]="email" class="block mt-2 w-full h-12 text-lg border-0 rounded-[10px] py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset placeholder:text-gray-400" placeholder="adolof@gmail.com">
+        
+        
+        <ion-button color="" type="submit" class="mt-8 w-full ion-button-login shadow-lg text-white font-bold  text-xl ">Enviar</ion-button>
+      </form>
+      
+    </div>
+    <p class="text-gray-500 text-center mt-10"><a href="">Terminos y condiciones</a></p>
+  </div>
+</ion-content>
+

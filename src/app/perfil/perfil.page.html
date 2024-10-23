@@ -31,7 +31,7 @@
         </div>
         
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <ion-button id="open-modal" class="mt-1 text-left text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0" fill="clear" expand="block" color="medium" (click)="modal.present()">
+          <ion-button id="open-modal2" class="mt-1 text-left text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0" fill="clear" expand="block" color="medium" (click)="modal.present()">
             Ver pedidos
           </ion-button>
         </div>
@@ -40,7 +40,7 @@
   </div>
 
   <div #page>
-    <ion-modal #modal trigger="open-modal" [canDismiss]="true" [presentingElement]="page">
+    <ion-modal #modal trigger="open-modal2" [canDismiss]="true" [presentingElement]="page">
       <ng-template>
         
         <div class="space-y-4">

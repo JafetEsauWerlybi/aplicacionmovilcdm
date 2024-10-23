@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokensService } from '../services/tokens.service';
 import { AlertasService } from '../services/alertas.service';
 import { Router } from '@angular/router';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-token',
   templateUrl: './token.page.html',
@@ -13,7 +13,7 @@ export class TokenPage implements OnInit {
   token : string = '';
   bol : boolean = false;
 
-  constructor(private tokenService: TokensService, private alertaService : AlertasService, private router: Router) { }
+  constructor(private tokenService: TokensService, private alertaService : AlertasService, private router: Router,private nav:NavController) { }
 
   async ngOnInit() {
     this.email = await this.tokenService.traerEmail()
@@ -41,6 +41,10 @@ export class TokenPage implements OnInit {
       this.router.navigate(['/cambiarpassword']);
 
     }
+  }
+
+  navToRecuperar(){
+    this.nav.navigateForward('/recuperar')
   }
 
 }

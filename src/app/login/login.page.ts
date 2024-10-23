@@ -5,7 +5,7 @@ import { UserStorageService } from '../services/user-storage.service';
 import { LoginService } from '../services/login.service';
 import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
 import { AlertasService } from '../services/alertas.service';
-
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
 
   constructor( private alertaService: AlertasService,
     private userStorageService: UserStorageService, 
-    private serviciosLogin: LoginService) {
+    private serviciosLogin: LoginService,
+    private nav:NavController) {
       
       if(!isPlatform('capacitor')){
         GoogleAuth.initialize();
@@ -31,6 +32,17 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  inicio(){
+    this.nav.navigateForward('/');
+  }
+
+  password2: string = '';
+  passwordVisible: boolean = false;
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   async long(){

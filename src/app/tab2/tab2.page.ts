@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Products } from '../interface/products';
-
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -10,6 +10,8 @@ import { Products } from '../interface/products';
 })
 export class Tab2Page implements OnInit {
   
+  @ViewChild(IonModal) modal!: IonModal; 
+
   products: Products[]= [];
   constructor(
     private productsService: ProductsService
@@ -27,6 +29,12 @@ export class Tab2Page implements OnInit {
     })
   }
 
+  selectedProduct: Products | null = null;
+
+  setSelectedProduct(product: Products) {
+    this.selectedProduct = product;
+    this.modal.present(); 
+  }
   
   async canDismiss(data?: any, role?: string) {
     return role !== 'gesture';
