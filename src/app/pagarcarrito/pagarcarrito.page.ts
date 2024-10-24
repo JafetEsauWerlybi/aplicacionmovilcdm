@@ -138,7 +138,6 @@ export class PagarcarritoPage implements OnInit {
     // Check to be able to use Google Pay on device
     const isAvailable = Stripe.isGooglePayAvailable().catch(() => undefined);
     if (isAvailable === undefined) {
-      // disable to use Google Pay
       return;
     }
   
@@ -150,11 +149,9 @@ export class PagarcarritoPage implements OnInit {
 
     const { paymentIntent } = await lastValueFrom(data$);
 
-    // Prepare Google Pay
     await Stripe.createGooglePay({
       paymentIntentClientSecret: paymentIntent,
 
-      // Web only. Google Pay on Android App doesn't need
       paymentSummaryItems: [{
         label: 'Esau',
         amount: 1099.00
@@ -164,10 +161,8 @@ export class PagarcarritoPage implements OnInit {
       currency: 'MXN',
     });
 
-    // Present Google Pay
     const result = await Stripe.presentGooglePay();
     if (result.paymentResult === GooglePayEventsEnum.Completed) {
-      // Happy path
       this.splitAndJoin(paymentIntent);
     }
   }
