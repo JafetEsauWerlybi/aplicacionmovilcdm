@@ -35,7 +35,10 @@ jobs:
       # 3. Instalar dependencias del proyecto
       - name: Install dependencies
         run: npm ci
-
+        
+      - name: Run lint
+        run: npm run lint 
+        
       # 4. Ejecutar pruebas unitarias con Jest
       - name: Run Karma tests
         run: npm run test 

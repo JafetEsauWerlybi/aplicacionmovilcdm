@@ -17,6 +17,7 @@ export class CambiarpasswordPage implements OnInit {
   constructor(private cambiarpwdService : CambiarpasswordService, private alertasService : AlertasService) { }
 
   ngOnInit() {
+    this.bol = false;
   }
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;

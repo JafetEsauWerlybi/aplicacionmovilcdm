@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { UserData } from '../interface/userData';
 import { CarritoService } from '../services/carrito.service';
@@ -10,7 +10,7 @@ import { PerfilService } from '../services/perfil.service';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
   private _storage: Storage | null = null;
   userData!: UserData;
   loading: boolean = true;

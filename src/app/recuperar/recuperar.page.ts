@@ -14,6 +14,7 @@ export class RecuperarPage implements OnInit {
   constructor(private alertaService: AlertasService, private recuperarService: RecuperarpasswordService) { }
 
   ngOnInit() {
+    this.bol = false;
   }
 
   async onSubmit() {

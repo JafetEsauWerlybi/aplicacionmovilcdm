@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Products } from '../interface/products';
 import { Promociones } from '../interface/Promociones';
@@ -9,7 +9,7 @@ import { PromocionesService } from '../services/promociones.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
   products: Products[]=[];
   lastThreeProducts: Products[] = [];
   promociones : Promociones[]=[];

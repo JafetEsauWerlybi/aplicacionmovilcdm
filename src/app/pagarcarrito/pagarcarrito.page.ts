@@ -23,6 +23,7 @@ export class PagarcarritoPage implements OnInit {
    }
 
   ngOnInit() {
+    this.data.email= 'jeckooficial@gmail.com';
   }
 
   httpPost(body) {
