@@ -38,24 +38,28 @@ jobs:
       - name: Install Ionic CLI
         run: npm install -g @ionic/cli
 
-      # 5. Levantar la aplicación de Ionic
-      - name: Start Ionic App
-        run: ionic serve --host 0.0.0.0 --port 8100 &
+      # 5. Construir la aplicación de Ionic
+      - name: Build Ionic App
+        run: ionic build
+
+      # 6. Servir la aplicación construida
+      - name: Serve built app
+        run: npx http-server ./www -p 8100 &
         env:
           CI: true
 
-      # 6. Esperar a que el servidor esté disponible antes de continuar
+      # 7. Esperar a que el servidor esté disponible antes de continuar
       - name: Wait for server to be ready
-        run: npx wait-on http://localhost:8100
+        run: npx wait-on http://localhost:8100 --timeout 300000 # Espera hasta 5 minutos
 
-      # 7. Ejecutar Linter
+      # 8. Ejecutar Linter
       - name: Run lint
         run: npm run lint 
         
-      # 8. Ejecutar pruebas unitarias con Jest
+      # 9. Ejecutar pruebas unitarias con Jest
       - name: Run Karma tests
         run: npm run test 
 
-      # 9. Ejecutar pruebas e2e con Cypress
+      # 10. Ejecutar pruebas e2e con Cypress
       - name: e2e cypress
         run: npx cypress run
