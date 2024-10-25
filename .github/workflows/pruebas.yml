@@ -50,7 +50,7 @@ jobs:
 
       # 7. Esperar a que el servidor esté disponible antes de continuar
       - name: Wait for server to be ready
-        run: npx wait-on http://localhost:8100 --timeout 300000 # Espera hasta 5 minutos
+        run: npx wait-on http://127.0.0.1:8100 --timeout 300000 # Espera hasta 5 minutos
 
       # 8. Ejecutar Linter
       - name: Run lint
