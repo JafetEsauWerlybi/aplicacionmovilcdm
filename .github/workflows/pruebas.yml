@@ -7,8 +7,7 @@ on:
       - '*'    # Ejecutar las pruebas en cualquier rama en cada push
   pull_request:
     branches:
-      - main   # Ejecutar las pruebas antes de fusionar a master
-
+      - main   # Ejecutar las pruebas antes de fusionar a main
   workflow_dispatch:
 
 # Permisos para GitHub Actions
@@ -17,7 +16,6 @@ permissions:
 
 jobs:
   unit-tests:
-    #name: Run Unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -35,23 +33,29 @@ jobs:
       # 3. Instalar dependencias del proyecto
       - name: Install dependencies
         run: npm ci
-          # 4. Levantar la aplicación de Angular
-      - name: Start Angular App
-        run: npm run start &
+
+      # 4. Instalar Ionic CLI globalmente
+      - name: Install Ionic CLI
+        run: npm install -g @ionic/cli
+
+      # 5. Levantar la aplicación de Ionic
+      - name: Start Ionic App
+        run: ionic serve --host 0.0.0.0 --port 8100 &
         env:
           CI: true
 
-    # 5. Esperar a que el servidor esté arriba
-      - name: Wait for Angular App to be available
-        run: ionic serve http://localhost:8100
+      # 6. Esperar a que el servidor esté disponible antes de continuar
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:8100
 
+      # 7. Ejecutar Linter
       - name: Run lint
         run: npm run lint 
         
-      # 4. Ejecutar pruebas unitarias con Jest
+      # 8. Ejecutar pruebas unitarias con Jest
       - name: Run Karma tests
         run: npm run test 
 
-         # 8. Ejecutar pruebas e2e con cypress
+      # 9. Ejecutar pruebas e2e con Cypress
       - name: e2e cypress
         run: npx cypress run
