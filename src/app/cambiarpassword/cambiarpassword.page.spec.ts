@@ -18,4 +18,5 @@ describe('CambiarpasswordPage', () => {
     // Este test es un placeholder para evitar errores
     expect(true).toBe(true);
   });
+
 });

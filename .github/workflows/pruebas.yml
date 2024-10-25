@@ -35,10 +35,23 @@ jobs:
       # 3. Instalar dependencias del proyecto
       - name: Install dependencies
         run: npm ci
-        
+          # 4. Levantar la aplicación de Angular
+      - name: Start Angular App
+        run: npm run start &
+        env:
+          CI: true
+
+    # 5. Esperar a que el servidor esté arriba
+      - name: Wait for Angular App to be available
+        run: ionic serve http://localhost:8100
+
       - name: Run lint
         run: npm run lint 
         
       # 4. Ejecutar pruebas unitarias con Jest
       - name: Run Karma tests
         run: npm run test 
+
+         # 8. Ejecutar pruebas e2e con cypress
+      - name: e2e cypress
+        run: npx cypress run
