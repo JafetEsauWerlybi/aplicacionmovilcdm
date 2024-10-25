@@ -62,13 +62,13 @@ export class Tab2Page implements OnInit {
         this.userData = {
           idUsuario: 0,
           Nombre: 'Invitado',
-          ApellidoPaterno: '',
-          ApellidoMaterno: '',
+          ApellidoPaterno: 'Invitado',
+          ApellidoMaterno: 'Invitado',
           Correo: 'invitado@example.com',
-          Telefono: '',
+          Telefono: 'Invitado',
           Rol: 0,
           EstadoCuenta: 'Invitado',
-          Token: '',
+          Token: 'Invitado',
           Icono: 'https://example.com/default-icon.png',
         };
       }
@@ -81,13 +81,13 @@ export class Tab2Page implements OnInit {
       this.userData = {
         idUsuario: 0,
         Nombre: 'Invitado',
-        ApellidoPaterno: '',
-        ApellidoMaterno: '',
+        ApellidoPaterno: 'Invitado',
+        ApellidoMaterno: 'Invitado',
         Correo: 'invitado@example.com',
-        Telefono: '',
+        Telefono: 'Invitado',
         Rol: 0,
         EstadoCuenta: 'Invitado',
-        Token: '',
+        Token: 'Invitado',
         Icono: 'https://example.com/default-icon.png',
       };
     }

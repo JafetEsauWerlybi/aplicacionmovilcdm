@@ -1,157 +1,118 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule, IonModal } from '@ionic/angular';
 import { Tab2Page } from './tab2.page';
 import { ProductsService } from '../services/products.service';
 import { PerfilService } from '../services/perfil.service';
 import { CarritoService } from '../services/carrito.service';
+import { AlertasService } from '../services/alertas.service';
+import { IonicModule, IonModal } from '@ionic/angular';
 import { of } from 'rxjs';
 import { Products } from '../interface/products';
 import { UserData } from '../interface/userData';
-
-const mockProducts: Products[] = [
-  {
-    idProducto: 1,
-    Nombre: 'Product 1',
-    Ingredientes: 'Ingredient 1, Ingredient 2',
-    Descripcion: 'A great product',
-    Precio: 100,
-    Disponibilidad: 10,
-    FechaIntroduccion: '2024-10-24',
-    Categoria: 1,
-    Estado: 'Disponible',
-    Imagen: 'https://example.com/image1.png'
-  }
-];
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('Tab2Page', () => {
   let component: Tab2Page;
   let fixture: ComponentFixture<Tab2Page>;
-  let productsServiceSpy: jasmine.SpyObj<ProductsService>;
-  let perfilServiceSpy: jasmine.SpyObj<PerfilService>;
-  let carritoServiceSpy: jasmine.SpyObj<CarritoService>;
+  let productsService: jasmine.SpyObj<ProductsService>;
+  let perfilService: jasmine.SpyObj<PerfilService>;
+  let carritoService: jasmine.SpyObj<CarritoService>;
+  let alertaService: jasmine.SpyObj<AlertasService>;
+
+  const mockProduct: Products = {
+    idProducto: 1,
+    Nombre: 'Pizza',
+    Ingredientes: 'Tomato, Cheese',
+    Descripcion: 'Delicious pizza with fresh ingredients',
+    Precio: 12.99,
+    Disponibilidad: 10,
+    FechaIntroduccion: '2023-01-01',
+    Categoria: 1,
+    Estado: 'Available',
+    Imagen: 'https://example.com/pizza.png'
+  };
+
+  const mockUserData: UserData = {
+    idUsuario: 1,
+    Nombre: 'Juan',
+    ApellidoPaterno: 'Pérez',
+    ApellidoMaterno: 'López',
+    Correo: 'juan@example.com',
+    Telefono: '1234567890',
+    Rol: 1,
+    EstadoCuenta: 'Active',
+    Token: 'mock-token',
+    Icono: 'https://example.com/icon.png'
+  };
 
   beforeEach(waitForAsync(() => {
-    const productsServiceMock = jasmine.createSpyObj('ProductsService', ['getALLProducts', 'obtenerDetallesProducto']);
-    const perfilServiceMock = jasmine.createSpyObj('PerfilService', ['obtenerDatosUsuario']);
-    const carritoServiceMock = jasmine.createSpyObj('CarritoService', ['agregarAlCarrito']);
-    productsServiceMock.getALLProducts.and.returnValue(of(mockProducts));
+    const productsServiceSpy = jasmine.createSpyObj('ProductsService', ['getALLProducts', 'obtenerDetallesProducto']);
+    const perfilServiceSpy = jasmine.createSpyObj('PerfilService', ['obtenerDatosUsuario']);
+    const carritoServiceSpy = jasmine.createSpyObj('CarritoService', ['agregarAlCarrito']);
+    const alertaServiceSpy = jasmine.createSpyObj('AlertasService', ['presentAlert']);
 
     TestBed.configureTestingModule({
       declarations: [Tab2Page],
       imports: [IonicModule.forRoot()],
       providers: [
-        { provide: ProductsService, useValue: productsServiceMock },
-        { provide: PerfilService, useValue: perfilServiceMock },
-        { provide: CarritoService, useValue: carritoServiceMock }
-      ]
+        { provide: ProductsService, useValue: productsServiceSpy },
+        { provide: PerfilService, useValue: perfilServiceSpy },
+        { provide: CarritoService, useValue: carritoServiceSpy },
+        { provide: AlertasService, useValue: alertaServiceSpy },
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(Tab2Page);
     component = fixture.componentInstance;
-    productsServiceSpy = TestBed.inject(ProductsService) as jasmine.SpyObj<ProductsService>;
-    perfilServiceSpy = TestBed.inject(PerfilService) as jasmine.SpyObj<PerfilService>;
-    carritoServiceSpy = TestBed.inject(CarritoService) as jasmine.SpyObj<CarritoService>;
+    productsService = TestBed.inject(ProductsService) as jasmine.SpyObj<ProductsService>;
+    perfilService = TestBed.inject(PerfilService) as jasmine.SpyObj<PerfilService>;
+    carritoService = TestBed.inject(CarritoService) as jasmine.SpyObj<CarritoService>;
+    alertaService = TestBed.inject(AlertasService) as jasmine.SpyObj<AlertasService>;
+    component.userData = mockUserData; // Asegura que userData esté inicializado
+    component.productModal = jasmine.createSpyObj('IonModal', ['present']);
+
   }));
 
-  it('should fetch all products on initialization', () => {
-    console.log('Testing: should fetch all products on initialization');
-    const mockProducts: Products[] = [
-      {
-        idProducto: 1,
-        Nombre: 'Product 1',
-        Ingredientes: 'Ingredient 1, Ingredient 2',
-        Descripcion: 'A great product',
-        Precio: 100,
-        Disponibilidad: 10,
-        FechaIntroduccion: '2024-10-24',
-        Categoria: 1,
-        Estado: 'Disponible',
-        Imagen: 'https://example.com/image1.png'
-      }
-    ];
-    productsServiceSpy.getALLProducts.and.returnValue(of(mockProducts));
-
-    component.ngOnInit();
-
-    expect(productsServiceSpy.getALLProducts).toHaveBeenCalled();
-    expect(component.products).toEqual(mockProducts);
-    console.log('Products after initialization:', component.products);
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
   });
 
   it('should fetch user data on initialization', async () => {
-    console.log('Testing: should fetch user data on initialization');
-    const mockUserData: UserData = {
-      idUsuario: 1,
-      Nombre: 'John',
-      ApellidoPaterno: 'Doe',
-      ApellidoMaterno: 'Smith',
-      Correo: 'john.doe@example.com',
-      Telefono: '1234567890',
-      Rol: 1,
-      EstadoCuenta: 'Activo',
-      Token: 'mockToken123',
-      Icono: 'https://example.com/icon.png'
-    };
-    perfilServiceSpy.obtenerDatosUsuario.and.returnValue(Promise.resolve(mockUserData));
-
+    perfilService.obtenerDatosUsuario.and.returnValue(Promise.resolve(mockUserData));
     await component.traerDatosUsuario();
-
-    expect(perfilServiceSpy.obtenerDatosUsuario).toHaveBeenCalled();
     expect(component.userData).toEqual(mockUserData);
-    console.log('User data after fetch:', component.userData);
+    expect(perfilService.obtenerDatosUsuario).toHaveBeenCalled();
   });
 
-  it('should add product to cart', async () => {
-    console.log('Testing: should add product to cart');
-    const mockUserId = 1;
-    const mockProductId = 10;
-    component.userData = {
-      idUsuario: mockUserId,
-      Nombre: 'John',
-      ApellidoPaterno: 'Doe',
-      ApellidoMaterno: 'Smith',
-      Correo: 'john.doe@example.com',
-      Telefono: '1234567890',
-      Rol: 1,
-      EstadoCuenta: 'Activo',
-      Token: 'mockToken123',
-      Icono: 'https://example.com/icon.png'
-    };
-    carritoServiceSpy.agregarAlCarrito.and.returnValue(Promise.resolve(true));
-
-    await component.agregarAlCarrito(mockProductId);
-
-    expect(carritoServiceSpy.agregarAlCarrito).toHaveBeenCalledWith(mockUserId, mockProductId);
-    console.log('Cart addition result:', carritoServiceSpy.agregarAlCarrito.calls.mostRecent().args);
+  it('should handle guest user data if no user data found', async () => {
+    perfilService.obtenerDatosUsuario.and.returnValue(Promise.resolve(null));
+    await component.traerDatosUsuario();
+    expect(component.userData.Nombre).toBe('Invitado');
   });
 
-  it('should fetch product details and present modal', () => {
-    console.log('Testing: should fetch product details and present modal');
-    const mockProduct: Products = {
-      idProducto: 1,
-      Nombre: 'Product 1',
-      Ingredientes: 'Ingredient 1, Ingredient 2',
-      Descripcion: 'A great product',
-      Precio: 100,
-      Disponibilidad: 10,
-      FechaIntroduccion: '2024-10-24',
-      Categoria: 1,
-      Estado: 'Disponible',
-      Imagen: 'https://example.com/image1.png'
-    };
-  
-    productsServiceSpy.obtenerDetallesProducto.and.returnValue(of(mockProduct));
-    
-    // Asegúrate de que el `productModal` esté inicializado antes de llamar a `spyOn`
-    fixture.detectChanges(); // Esto fuerza la detección de cambios y debería inicializar el ViewChild
-    spyOn(component.productModal, 'present').and.returnValue(Promise.resolve());
-  
+  it('should load all products on initialization', () => {
+    productsService.getALLProducts.and.returnValue(of([mockProduct]));
+    component.getALLProducts();
+    expect(component.products).toEqual([mockProduct]);
+    expect(productsService.getALLProducts).toHaveBeenCalled();
+  });
+
+  it('should add product to cart and show alert on success', async () => {
+    carritoService.agregarAlCarrito.and.returnValue(Promise.resolve(true));
+    await component.agregarAlCarrito(mockProduct.idProducto);
+    expect(carritoService.agregarAlCarrito).toHaveBeenCalledWith(component.userData.idUsuario, mockProduct.idProducto);
+    expect(alertaService.presentAlert).toHaveBeenCalledWith('Producto agregado');
+  });
+
+  it('should fetch product details and open modal', () => {
+    productsService.obtenerDetallesProducto.and.returnValue(of(mockProduct));
     component.obtenerDetalleProducto(mockProduct.idProducto);
-  
-    expect(productsServiceSpy.obtenerDetallesProducto).toHaveBeenCalledWith(mockProduct.idProducto);
+    expect(productsService.obtenerDetallesProducto).toHaveBeenCalledWith(mockProduct.idProducto);
     expect(component.productoSelect).toEqual(mockProduct);
     expect(component.productModal.present).toHaveBeenCalled();
-    console.log('Selected product details:', component.productoSelect);
   });
-  
+
+  it('should dismiss the modal on canDismiss call', async () => {
+    expect(await component.canDismiss()).toBeTrue();
+  });
 });
