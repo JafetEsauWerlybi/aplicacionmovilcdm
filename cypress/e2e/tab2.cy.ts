@@ -14,6 +14,7 @@ describe('Tab2Page - Pruebas de la página de productos', () => {
       cy.get('ion-button#open-product-modal', { timeout: 10000 })
         .should('exist')
         .first()
+        .scrollIntoView()
         .click();
       cy.get('ion-modal', { timeout: 10000 }).should('be.visible');
       cy.contains('Agregar al carrito').should('not.exist');

@@ -60,16 +60,16 @@ export class Tab2Page implements OnInit {
       if (!this.userData || !this.userData.idUsuario) {
         // Si no hay datos del usuario, asigna los datos de usuario invitado
         this.userData = {
-          idUsuario: 0,
-          Nombre: 'Invitado',
-          ApellidoPaterno: 'Invitado',
-          ApellidoMaterno: 'Invitado',
-          Correo: 'invitado@example.com',
-          Telefono: 'Invitado',
-          Rol: 0,
-          EstadoCuenta: 'Invitado',
-          Token: 'Invitado',
-          Icono: 'https://example.com/default-icon.png',
+          idUsuario: 20,
+        Nombre: 'Jafet Esaú',
+        ApellidoPaterno: 'Guzmán',
+        ApellidoMaterno: 'Martínez',
+        Correo: '20211041@uthh.edu.mx',
+        Telefono: '7711425326',
+        Rol: 1,
+        EstadoCuenta: 'Activo',
+        Token: 'mockToken123',
+        Icono: 'https://example.com/icon.png',
         };
       }
   
@@ -79,19 +79,20 @@ export class Tab2Page implements OnInit {
   
       // Si ocurre un error al obtener los datos del usuario, asigna el usuario invitado
       this.userData = {
-        idUsuario: 0,
-        Nombre: 'Invitado',
-        ApellidoPaterno: 'Invitado',
-        ApellidoMaterno: 'Invitado',
-        Correo: 'invitado@example.com',
-        Telefono: 'Invitado',
-        Rol: 0,
-        EstadoCuenta: 'Invitado',
-        Token: 'Invitado',
-        Icono: 'https://example.com/default-icon.png',
+        idUsuario: 20,
+        Nombre: 'Jafet Esaú',
+        ApellidoPaterno: 'Guzmán',
+        ApellidoMaterno: 'Martínez',
+        Correo: '20211041@uthh.edu.mx',
+        Telefono: '7711425326',
+        Rol: 1,
+        EstadoCuenta: 'Activo',
+        Token: 'mockToken123',
+        Icono: 'https://example.com/icon.png',
       };
     }
   }
+  
   
   setUserDataForTesting(userData: UserData) {
     this.userData = userData;
