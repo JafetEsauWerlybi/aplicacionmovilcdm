@@ -7,15 +7,17 @@
 
   <div class="flex justify-between mb-6 mx-8 mt-4">
     <p class="text-md">Total</p>
-    <p class="text-md font-bold">STRIPE HERE</p>
+    <div *ngIf="total">
+      <p class="text-md font-bold">$ {{total}}</p>
+    </div>
   </div>
+  <div *ngIf="userData !== null">
 
-  <ion-button expand="block" class="ion-margin-top" (click)="paymentSheet()">Pagar con tarjeta de credito</ion-button>
-
-  <ion-button expand="block" class="ion-margin-top" (click)="paymentFlow()">Pagar con tarjeta de credito/debito</ion-button>
-
-  <ion-button expand="block" class="ion-margin-top" (click)="applePay()">Pagar con Apple Pay</ion-button>
-
-  <ion-button expand="block" class="ion-margin-top" (click)="googlePay()">Pagar con Google Play</ion-button>
+    <ion-button expand="block" class="ion-margin-top" (click)="paymentSheet()">Pagar con tarjeta de credito</ion-button>
+  
+    <!-- <ion-button expand="block" class="ion-margin-top" (click)="paymentFlow()">Pagar con tarjeta de credito/debito</ion-button> -->
+    
+    <ion-button expand="block" class="ion-margin-top" (click)="googlePay()">Pagar con Google Play</ion-button>
+  </div>
  
 </ion-content>

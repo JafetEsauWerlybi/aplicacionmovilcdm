@@ -7,11 +7,16 @@
 
     <p class="text-xl font-bold">Tus productos</p>
 
-    <div *ngIf="carrito.length <= 0" class="flex justify-center items-center mt-8">
+    <div *ngIf="loading && carrito.length <= 0" class="flex justify-center items-center mt-8">
       <ion-spinner name="crescent"></ion-spinner>
       <p class="ml-2 text-lg">Cargando...</p>
     </div>
-        <div *ngFor="let producto of carrito" class="flex flex-row mt-4 items-center border-t border-1">
+    
+    <div *ngIf="noPedidos && !loading" class="flex justify-center items-center mt-8">
+      <p class="text-lg text-gray-600">No tiene agregado nada aún</p>
+    </div>
+    
+      <div *ngFor="let producto of carrito" class="flex flex-row mt-4 items-center border-t border-1">
       <div class="max-w-2xl mr-3">
         <img [src]="producto.Imagen" class="h-20 w-20" alt="{{ producto.Nombre }}">
       </div>
@@ -34,10 +39,16 @@
         </div>
       </div>
     </div>
-
-    <div class="w-full flex justify-center mt-4">
-      <a href="pagarcarrito" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 text-center">
-        Pagar Carrito
+    <div *ngIf="carrito.length > 0" class="flex justify-center items-center mt-8">
+      <div class="w-full flex justify-center mt-4">
+        <a href="pagarcarrito" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 text-center">
+          Pagar Carrito
+        </a>
+      </div>
+    </div>
+    <div *ngIf="noPedidos && !loading" class="w-full flex justify-center mt-4">
+      <a href="home/tabs/tab2" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 text-center">
+         Ver productos
       </a>
     </div>
   </div>

@@ -11,7 +11,7 @@ export interface Pedido {
 }
 
 export interface Direccion {
-    IdDireccion:    number;
+    DireccionID:    number;
     Calle:          string;
     Colonia:        string;
     NumeroInterior: string;
