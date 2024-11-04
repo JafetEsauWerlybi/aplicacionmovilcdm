@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <div class="mx-8 my-5 text-left"> <!-- Alineación a la izquierda -->
     <img class="mb-5" src="../../assets/logo.png">
     <h1 class="p-1 font-bold text-2xl mt-15 mb-2">Paga tu compra</h1>
@@ -7,34 +7,17 @@
 
   <div class="flex justify-between mb-6 mx-8 mt-4">
     <p class="text-md">Total</p>
-    <p class="text-md font-bold">$39.90</p>
+    <div *ngIf="total">
+      <p class="text-md font-bold">$ {{total}}</p>
+    </div>
   </div>
+  <div *ngIf="userData !== null">
 
-  <form class="space-y-4 mx-8 my-5">
-    <div>
-      <label for="cardholder-name" class="block text-sm mb-1">Nombre del titular</label>
-      <input type="text" id="cardholder-name" placeholder="Tu tarjeta" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300">
-    </div>
-
-    <div>
-      <label for="card-number" class="block text-sm mb-1">Tarjeta de débito o crédito</label>
-      <input type="text" id="card-number" placeholder="Tu tarjeta" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300">
-    </div>
-
-    <div class="flex space-x-4">
-      <div class="w-1/2">
-        <label for="expiry-date" class="block text-sm mb-1">Fecha de vencimiento</label>
-        <input type="text" id="expiry-date" placeholder="00/00" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300">
-      </div>
-      <div class="w-1/2">
-        <label for="cvv" class="block text-sm mb-1">CVV</label>
-        <input type="text" id="cvv" placeholder="999" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300">
-      </div>
-    </div>
-
-
-    <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition" style="margin-top: 50px;">Pagar</button>
-    <button type="button" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">Pagar con PayPal</button>
-    <button type="button" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">Pagar con MercadoPago</button>
-  </form>
+    <ion-button expand="block" class="ion-margin-top" (click)="paymentSheet()">Pagar con tarjeta de credito</ion-button>
+  
+    <!-- <ion-button expand="block" class="ion-margin-top" (click)="paymentFlow()">Pagar con tarjeta de credito/debito</ion-button> -->
+    
+    <ion-button expand="block" class="ion-margin-top" (click)="googlePay()">Pagar con Google Play</ion-button>
+  </div>
+ 
 </ion-content>

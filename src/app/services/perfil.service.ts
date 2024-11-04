@@ -30,7 +30,7 @@ export class PerfilService {
   }
 
   traerToken() {
-    console.log(this.telefono);
+    //console.log(this.telefono);
     return this.http.get<Token>(this.tokenUrl + this.telefono);  // Retorna un Observable directamente
   }
   cerrarSesion(){

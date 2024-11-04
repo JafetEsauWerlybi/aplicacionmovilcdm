@@ -1,31 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Products } from '../interface/products';
 import { Promociones } from '../interface/Promociones';
 import { PromocionesService } from '../services/promociones.service';
+import { IonModal } from '@ionic/angular';
+import { PerfilService } from '../services/perfil.service';
+import { CarritoService } from '../services/carrito.service';
+import { UserData } from '../interface/userData';
+import { AlertasService } from '../services/alertas.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
   products: Products[]=[];
   lastThreeProducts: Products[] = [];
   promociones : Promociones[]=[];
+  productoSelect!: Products;
+  userData!: UserData;
 
-  constructor(private productsService: ProductsService, private promocionesS: PromocionesService) {}
+  @ViewChild('productModalHome') productModal!: IonModal;
+
+  constructor(private productsService: ProductsService, private promocionesS: PromocionesService,private perfilService: PerfilService,private carritoService: CarritoService, private alertaS : AlertasService
+  ) {}
 
   ngOnInit() {
+    this.traerDatosUsuario(); // Asegúrate de llamar a la función para cargar al usuario
     this.getALLProducts();
     this.getALLPromocion();
   }
 
   ionViewWillEnter() {
+    this.traerDatosUsuario(); // Asegúrate de llamar a la función para cargar al usuario
     this.getALLProducts();
     this.getALLPromocion();
   }
-
+  
+  async traerDatosUsuario() {
+    try {
+      this.userData = await this.perfilService.obtenerDatosUsuario();
+    } catch (error) {
+      console.error('Error al obtener datos de usuario', error);
+    }
+  }
+  
+  async canDismiss(data?: any, role?: string) {
+    return role !== 'gesture';
+  }
+  async agregarAlCarrito(idProducto: number) {
+    const exito = await this.carritoService.agregarAlCarrito(this.userData.idUsuario, idProducto);
+    if(exito){
+      this.alertaS.presentAlert('Producto agregado');
+    }
+  }
 
   getALLProducts() {
     this.productsService.getALLProducts().subscribe({
@@ -61,6 +90,18 @@ export class Tab1Page {
       },
       error: (error) => {
         //console.error('Error al obtener productos:', error);
+      }
+    });
+  }
+  obtenerDetalleProducto(idProducto: number) {
+    this.productsService.obtenerDetallesProducto(idProducto).subscribe({
+      next: (producto: Products) => {
+        this.productoSelect = producto;
+        //console.log('Producto seleccionado:', this.productoSelect);
+        this.productModal.present();
+      },
+      error: (error) => {
+        console.error('Error al obtener los detalles del producto', error);
       }
     });
   }

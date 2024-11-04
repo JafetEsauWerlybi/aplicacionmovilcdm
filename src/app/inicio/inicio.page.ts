@@ -7,7 +7,7 @@ import { NavController } from '@ionic/angular';
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
-export class InicioPage  {
+export class InicioPage {
 
   constructor(private navCtrl: NavController) { }
 
@@ -15,5 +15,5 @@ export class InicioPage  {
   goToLogin() {
     this.navCtrl.navigateForward('/login');
   }
-
+  
 }

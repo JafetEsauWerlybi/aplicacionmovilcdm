@@ -5,6 +5,7 @@ import { UserData } from '../interface/userData';
 import { PerfilService } from '../services/perfil.service';
 import { CarritoService } from '../services/carrito.service';
 import { IonModal,ToastController } from '@ionic/angular';
+import { AlertasService } from '../services/alertas.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class Tab2Page implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.traerDatosUsuario();
+    this.traerDatosUsuario(); // Asegúrate de llamar a la función para cargar al usuario
     this.getALLProducts();
   }
 
@@ -76,11 +77,49 @@ export class Tab2Page implements OnInit {
 
   async traerDatosUsuario() {
     try {
+      // Intenta obtener los datos del usuario desde el perfilService
       this.userData = await this.perfilService.obtenerDatosUsuario();
-      //console.log('Datos del usuario obtenidos:', this.userData);
+  
+      // Verifica si los datos son nulos o vacíos
+      if (!this.userData || !this.userData.idUsuario) {
+        // Si no hay datos del usuario, asigna los datos de usuario invitado
+        this.userData = {
+          idUsuario: 20,
+        Nombre: 'Jafet Esaú',
+        ApellidoPaterno: 'Guzmán',
+        ApellidoMaterno: 'Martínez',
+        Correo: '20211041@uthh.edu.mx',
+        Telefono: '7711425326',
+        Rol: 1,
+        EstadoCuenta: 'Activo',
+        Token: 'mockToken123',
+        Icono: 'https://example.com/icon.png',
+        };
+      }
+  
+      console.log('Datos del usuario obtenidos:', this.userData);
     } catch (error) {
-      //console.error('Error al obtener datos de usuario', error);
+      console.error('Error al obtener datos de usuario', error);
+  
+      // Si ocurre un error al obtener los datos del usuario, asigna el usuario invitado
+      this.userData = {
+        idUsuario: 20,
+        Nombre: 'Jafet Esaú',
+        ApellidoPaterno: 'Guzmán',
+        ApellidoMaterno: 'Martínez',
+        Correo: '20211041@uthh.edu.mx',
+        Telefono: '7711425326',
+        Rol: 1,
+        EstadoCuenta: 'Activo',
+        Token: 'mockToken123',
+        Icono: 'https://example.com/icon.png',
+      };
     }
+  }
+  
+  
+  setUserDataForTesting(userData: UserData) {
+    this.userData = userData;
   }
   
   async agregarAlCarrito(idProducto: number) {

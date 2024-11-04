@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PedidosService } from '../services/pedidos.service'; // Ajusta la ruta según tu estructura de carpetas
 import { IonModal } from '@ionic/angular';
 import { Pedidos } from '../interface/pedidos';
@@ -11,7 +11,7 @@ import { Token } from '../interface/token';
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
 })
-export class PerfilPage {
+export class PerfilPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   misPedidos!: Pedidos; 
   userData!: UserData;
