@@ -45,4 +45,13 @@ export class UserStorageService {
     await this._storage?.remove('email');
     //console.log('Datos del usuario eliminados del storage');
   }
+
+  async isUserLoggedIn(): Promise<boolean> {
+    if (!this._storage) {
+      await this.init();
+    }
+    const userData = await this._storage?.get(this.storageKey);
+    return !!userData; // Devuelve true si existe, false si no
+  }
+  
 }
