@@ -5,13 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
-export class InicioPage implements OnInit {
+export class InicioPage {
 
   constructor() { }
 
   ruta="/login";
-  ngOnInit() {
-  }
-
-
+  
 }
