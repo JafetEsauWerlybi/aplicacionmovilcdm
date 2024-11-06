@@ -80,6 +80,11 @@
                     <img [src]="productoSelect.Imagen" alt="Producto" class="h-1/2 w-full">
                   </div>
                 </div>
+                <div *ngIf="userData.idUsuario !== 0" >
+                  <button class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700" (click)="agregarAlCarrito(productoSelect.idProducto)" >
+                    Agregar al carrito<ion-icon name="cart"  class="mr-2"></ion-icon> 
+                  </button>
+                </div>
                 <div class="flex mt-2 pr-4 pl-4 ml-3 items-center">
                   <div class="flex items-center mr-4">
                     <ion-icon name="alarm-outline" class="h-7 w-7 mr-2"></ion-icon>
@@ -97,22 +102,13 @@
                   </div>
                   <p class="font-normal text-start text-md mt-4">{{ productoSelect.Descripcion }}</p>
                   <p class="font-normal text-start text-md mt-4">{{ productoSelect.Ingredientes }}</p>
-
-                </div>
-                <div class="flex justify-start justify-between pr-8 pl-8 mt-4">
-                  <p class="font-bold">Todos</p>
-                  <p>{{ productoSelect.Categoria }}</p>
                 </div>
                 <div class="p-5 ml-3 flex justify-center w-full bg-white">
                   <div class="flex justify-between m-2 items-center">
                     <span class="font-bold text-2xl mr-2">{{productoSelect.Disponibilidad}} disponibles</span>
                   </div>
                 </div>
-                <div *ngIf="userData.idUsuario !== 0" >
-                  <button class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700" (click)="agregarAlCarrito(productoSelect.idProducto)" >
-                    Agregar al carrito<ion-icon name="cart"  class="mr-2"></ion-icon> 
-                  </button>
-                </div>
+
 
               </div>
             </ion-content>
