@@ -9,9 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
-
+import { SplashComponent } from './splash/splash.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,SplashComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, IonicStorageModule.forRoot()],
   providers: [
     provideHttpClient(),

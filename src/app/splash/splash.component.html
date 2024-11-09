@@ -1,0 +1,77 @@
+<div class="splash-screen">
+  <div class="logo-container">
+    <div class="flex justify-center">
+      <img src="assets/logo2.png" alt="Logo" class="logo " />
+    </div>
+    <div class="company-name">
+      <span class="letter">C</span><span class="letter">a</span><span class="letter">s</span><span class="letter">a</span>
+      <span class="letter">D</span><span class="letter">e</span><span class="letter">l</span>
+      <span class="letter">M</span><span class="letter">a</span><span class="letter">r</span><span class="letter">i</span><span class="letter">s</span><span class="letter">c</span><span class="letter">o</span>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  .splash-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffffff; /* Cambia el color de fondo según tu marca */
+  animation: fadeOut 1s ease 4s forwards; /* Desaparece todo el splash después de 4 segundos */
+}
+
+.logo-container {
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInLogo 1s ease forwards, fadeOut 1s ease 3s forwards; /* Logo se desvanece en 3 segundos */
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  animation: scaleLogo 1s ease forwards; /* Animación de aparición */
+}
+
+.company-name {
+  font-size: 30px;
+  color: orange;
+  font-weight: 800;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeInText 1s ease 1.5s forwards; /* Aparece después del logo */
+}
+
+/* Animaciones */
+@keyframes fadeInLogo {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleLogo {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+</style>

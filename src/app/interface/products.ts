@@ -9,4 +9,5 @@ export interface Products {
     Categoria: number;
     Estado: string;
     Imagen: string;
+    nombreCategoria?: string;
 }

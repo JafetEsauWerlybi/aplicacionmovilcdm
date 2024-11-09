@@ -10,6 +10,8 @@ import { UserData } from './interface/userData';
 })
 export class AppComponent implements OnInit {
 
+  showSplash = true;
+
   constructor(
     private userStorageService: UserStorageService,
     private navController: NavController
@@ -19,6 +21,9 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.checkUserSession();
     }, 1000); 
+    setTimeout(() => {
+      this.showSplash = false;
+    }, 3000);
   }
 
   async checkUserSession() {
@@ -30,9 +35,6 @@ export class AppComponent implements OnInit {
     if (userData) {
       // Si existe userData, redirige al home
       this.navController.navigateRoot('/home/tabs/tab1');
-    } else {
-      // Si no existe userData, redirige al login
-      this.navController.navigateRoot('/');
-    }
+    } 
   }
 }

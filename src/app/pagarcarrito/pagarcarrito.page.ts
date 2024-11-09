@@ -9,7 +9,7 @@ import { UserData } from '../interface/userData';
 import { Carrito } from '../interface/Carrito';
 import { Direccion } from '../interface/pedidos';
 import { PedidosService } from '../services/pedidos.service';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-pagarcarrito',
   templateUrl: './pagarcarrito.page.html',
@@ -27,7 +27,8 @@ export class PagarcarritoPage implements OnInit {
     private http: HttpClient,
     private carritoService: CarritoService,
     private perfilService: PerfilService,
-    private pedidosS : PedidosService
+    private pedidosS : PedidosService,
+    private nav: NavController
   ) {
     Stripe.initialize({
       publishableKey: environment.stripe.publishableKey,
@@ -56,6 +57,10 @@ export class PagarcarritoPage implements OnInit {
       currency: 'mxn',
     };
     console.log('Datos de pago inicializados:', this.data);
+  }
+
+  goToCarrito(){
+    this.nav.navigateForward('home/tabs/tab3')
   }
   
   async traerDatosUsuario() {
@@ -93,7 +98,9 @@ export class PagarcarritoPage implements OnInit {
     try {
       const data = await lastValueFrom(this.carritoService.getCarrito(this.userData.idUsuario));
       this.carrito = data;
-      this.total = this.carrito.reduce((total, item) => total + (item.Precio || 0), 0);
+      
+      this.total = this.carrito.reduce((total, item) => total + (item.Precio || 0), 0) * 1.16;
+
       console.log('Carrito cargado:', this.carrito);
       console.log('Total calculado:', this.total);
       this.loading = false;
