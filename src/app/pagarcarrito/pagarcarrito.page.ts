@@ -9,7 +9,9 @@ import { UserData } from '../interface/userData';
 import { Carrito } from '../interface/Carrito';
 import { Direccion } from '../interface/pedidos';
 import { PedidosService } from '../services/pedidos.service';
-import { NavController } from '@ionic/angular';
+import { NavController ,ModalController} from '@ionic/angular';
+import { FeedbackComponent } from '../feedback/feedback.component';
+
 @Component({
   selector: 'app-pagarcarrito',
   templateUrl: './pagarcarrito.page.html',
@@ -28,7 +30,8 @@ export class PagarcarritoPage implements OnInit {
     private carritoService: CarritoService,
     private perfilService: PerfilService,
     private pedidosS : PedidosService,
-    private nav: NavController
+    private nav: NavController,
+    private modalController: ModalController 
   ) {
     Stripe.initialize({
       publishableKey: environment.stripe.publishableKey,
@@ -61,6 +64,16 @@ export class PagarcarritoPage implements OnInit {
 
   goToCarrito(){
     this.nav.navigateForward('home/tabs/tab3')
+  }
+
+  async openSurveyModal() {
+    const modal = await this.modalController.create({
+      component: FeedbackComponent, // Componente de encuesta
+      cssClass: 'my-custom-class', // Clase personalizada si tienes alguna
+      componentProps: { /* Pasa aquí los datos necesarios para la encuesta, si es necesario */ }
+    });
+    return await modal.present();
+
   }
   
   async traerDatosUsuario() {
@@ -140,6 +153,10 @@ export class PagarcarritoPage implements OnInit {
         this.splitAndJoin(paymentIntent);
         console.log(this.userData.idUsuario, this.carrito[0].idCarrito,this.total ,this.direcciones[0].DireccionID)
         this.pedidosS.crearPedidos(this.userData.idUsuario, this.carrito[0].idCarrito,this.total ,this.direcciones[0].DireccionID);
+        const encuestaRespondida = localStorage.getItem('encuestaRespondida');
+        if (!encuestaRespondida) {
+          this.openSurveyModal();
+        }
       }
     } catch (e) {
       console.log(e);

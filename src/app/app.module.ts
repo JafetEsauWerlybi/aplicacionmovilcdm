@@ -10,8 +10,9 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { SplashComponent } from './splash/splash.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 @NgModule({
-  declarations: [AppComponent,SplashComponent],
+  declarations: [AppComponent,SplashComponent,FeedbackComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, IonicStorageModule.forRoot()],
   providers: [
     provideHttpClient(),
