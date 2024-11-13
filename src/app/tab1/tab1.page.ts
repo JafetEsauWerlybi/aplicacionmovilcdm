@@ -49,6 +49,7 @@ export class Tab1Page implements OnInit {
   async canDismiss(data?: any, role?: string) {
     return role !== 'gesture';
   }
+
   async agregarAlCarrito(idProducto: number) {
     const exito = await this.carritoService.agregarAlCarrito(this.userData.idUsuario, idProducto);
     if(exito){
@@ -93,6 +94,7 @@ export class Tab1Page implements OnInit {
       }
     });
   }
+  
   obtenerDetalleProducto(idProducto: number) {
     this.productsService.obtenerDetallesProducto(idProducto).subscribe({
       next: (producto: Products) => {

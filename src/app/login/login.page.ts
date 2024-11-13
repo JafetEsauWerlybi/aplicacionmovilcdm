@@ -7,7 +7,7 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { AlertasService } from '../services/alertas.service';
 import { GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithCredential } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +22,13 @@ export class LoginPage implements OnInit {
   usuario: User | null = null;
   isWeb = false;
   firebase: any;
+  passwordVisible: boolean = false;
 
   constructor( private alertaService: AlertasService,
     private userStorageService: UserStorageService, 
     private serviciosLogin: LoginService,
-    private platform: Platform) {
+    private platform: Platform,
+    private nav:NavController) {
       
       this.isWeb = this.platform.is('desktop') || this.platform.is('mobileweb') || !(this.platform.is('android') || this.platform.is('ios'));
         this.firebase = initializeApp(environment.firebase);
@@ -34,6 +36,14 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.initialize();
+  }
+
+  inicio(){
+    this.nav.navigateForward('/');
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   async long(){

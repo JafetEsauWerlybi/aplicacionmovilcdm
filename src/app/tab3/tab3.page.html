@@ -5,49 +5,74 @@
 
     <app-direccion></app-direccion>
 
-    <p class="text-xl font-bold">Tus productos</p>
+    <p class="text-xl font-bold mt-5 mb-2">Tus productos</p>
 
+    <!-- Mensaje de carga -->
     <div *ngIf="loading && carrito.length <= 0" class="flex justify-center items-center mt-8">
       <ion-spinner name="crescent"></ion-spinner>
       <p class="ml-2 text-lg">Cargando...</p>
     </div>
     
+    <!-- Mensaje de carrito vacío -->
     <div *ngIf="noPedidos && !loading" class="flex justify-center items-center mt-8">
       <p class="text-lg text-gray-600">No tiene agregado nada aún</p>
     </div>
     
-      <div *ngFor="let producto of carrito" class="flex flex-row mt-4 items-center border-t border-1">
-      <div class="max-w-2xl mr-3">
-        <img [src]="producto.Imagen" class="h-20 w-20" alt="{{ producto.Nombre }}">
+    <!-- Lista de productos en el carrito -->
+    <div *ngFor="let producto of carrito" class="flex flex-row p-4 rounded-xl items-center bg-white border border-1 space-x-4 mb-4">
+      <div class="mr-3">
+        <img [src]="producto.Imagen" class="h-20 w-20 rounded-lg" alt="{{ producto.Nombre }}">
       </div>
-      <div class="flex flex-col">
-        <div>
-          <p class="text-gray-900">{{ producto.Nombre }}</p>
+      <div class="flex flex-col flex-1">
+        <div class="flex justify-between items-center">
+          <p class="font-bold text-gray-900">{{ producto.Nombre }}</p>
+          <ion-button fill="clear" (click)="quitarTodoCarrito(producto.idProducto,producto.idCarritoProductos)" class="ion-button-eliminar">
+            <ion-icon name="trash-outline" class="text-red-500 h-6 w-6 cursor-pointer"></ion-icon>
+          </ion-button>  
         </div>
-        <div class="flex flex-row items-center">
-          <div class="flex justify-between m-2 items-center">
-            <button name="add-circle-outline" class="h-6 w-6 mr-4" (click)="quitarCarrito(producto.idProducto, producto.idCarritoProductos)"><ion-icon name="remove-circle-outline" class="h-6 w-6 mr-4"></ion-icon>
+        <p class="text-sm text-gray-500">Precio unitario: {{producto.PrecioUnitario}}</p> <!-- Cambia "Electronics" según la categoría del producto -->
+        <div class="flex flex-row items-center justify-between mt-2">
+          <div class="flex items-center space-x-2">
+            <button class="h-8 w-8 flex items-center justify-center rounded-full  " (click)="quitarCarrito(producto.idProducto, producto.idCarritoProductos)">
+              <ion-icon name="remove-circle-outline" class="text-black h-6 w-6"></ion-icon>
             </button>
-            <span class="font-bold text-xl mr-4">{{ producto.Cantidad }}</span>
-            <button (click)="agregarAlCarrito(producto.idProducto)">
-              <ion-icon name="add-circle-outline" class="h-6 w-6 mr-4"> </ion-icon>
+            <span class="text-lg font-semibold">{{ producto.Cantidad }}</span>
+            <button class="h-8 w-8 flex items-center justify-center rounded-full " (click)="agregarAlCarrito(producto.idProducto)">
+              <ion-icon name="add-circle-outline" class="text-black h-6 w-6"></ion-icon>
             </button>
           </div>
-          <div>
-            <p class="font-bold text-xl">{{ producto.Precio }}$</p> 
-          </div>
+          <p class="font-bold text-xl text-gray-800">{{ producto.Precio }}$</p>
         </div>
       </div>
     </div>
-    <div *ngIf="carrito.length > 0" class="flex justify-center items-center mt-8">
-      <div class="w-full flex justify-center mt-4">
-        <a href="pagarcarrito" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 text-center">
-          Pagar Carrito
-        </a>
+
+
+    <!-- Totales -->
+    <div class="mt-6">
+      <div class="flex justify-between text-lg">
+        <span>Subtotal</span>
+        <span>${{totalCarritoSinIVa}}</span> <!-- Aquí muestra el subtotal dinámicamente -->
+      </div>
+      <div class="flex justify-between text-lg">
+        <span>Iva</span>
+        <span>${{iva}}</span> <!-- Aquí muestra el subtotal dinámicamente -->
+      </div>
+      <div class="flex justify-between text-xl font-bold mt-2">
+        <span>Total</span>
+        <span>${{totalFinal}}</span> <!-- Aquí muestra el total dinámicamente -->
       </div>
     </div>
+
+    <!-- Botón de Pagar Carrito -->
+    <div *ngIf="carrito.length > 0" class="w-full flex justify-center mt-6">
+      <a (click)="pagarGoTo()" class="w-full bg-green-600 text-white py-3 rounded-lg text-center font-bold hover:bg-green-700">
+        Pagar Carrito
+      </a>
+    </div>
+
+    <!-- Botón de Ver Productos cuando el carrito está vacío -->
     <div *ngIf="noPedidos && !loading" class="w-full flex justify-center mt-4">
-      <a href="home/tabs/tab2" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 text-center">
+      <a href="home/tabs/tab2" class="w-full bg-green-600 text-white py-3 rounded-lg text-center font-bold hover:bg-green-700">
          Ver productos
       </a>
     </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NavController } from '@ionic/angular';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -7,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioPage {
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
-  ruta="/login";
+
+  goToLogin() {
+    this.navCtrl.navigateForward('/login');
+  }
   
 }

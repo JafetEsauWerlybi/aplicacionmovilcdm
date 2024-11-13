@@ -1,83 +1,116 @@
 <ion-content [fullscreen]="true">
-
   <div class="bg-white pr-1 pl-1">
     <p class="font-bold text-2xl mt-2 p-4 ml-2 text-center">Menu</p>
-    <p class="font-black text-2xl ml-4 mb-4 text-green-800 text-start"
-    *ngIf="userData?.Nombre">Descubre <span class="text-orange-600">nuestros</span> sabores {{ userData.Nombre }}</p>
- 
+    <p
+      class="font-black text-2xl ml-4 mb-4 text-green-800 text-start"
+      *ngIf="userData?.Nombre"
+    >
+      Descubre <span class="text-orange-600">nuestros</span> sabores {{
+      userData.Nombre }}
+    </p>
 
     <div class="ml-4 flex items-center justify-between mb-4">
       <div class="flex-1">
-        <input type="text" placeholder="Healthy Food"
-          class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-yellow-500" />
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="filtrarProductos()"
+          placeholder="Buscar producto"
+          class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-yellow-500"
+        />
       </div>
-      <ion-button class="btn-primary  text-white font-bold h-12 px-2 rounded ">
+      <ion-button  id="open-modal2" expand="block"  class="btn-primary text-white font-bold h-12 px-2 rounded">
         <ion-icon class="h-12 w-7" name="options-outline"></ion-icon>
       </ion-button>
     </div>
 
-    <div class="ml-4 flex space-x-3 overflow-x-auto ">
-      <button class="bg-yellow-400 text-white font-semibold px-4 py-2 rounded-full">
-        <div class="flex items-center">
+
+    <div class="ml-4 flex space-x-3 overflow-x-auto">
+      <button (click)="filtrarPorCategoria(1)"
+        class="bg-yellow-400 text-white font-semibold px-2 py-2 rounded-full"
+      >
+        <div class="flex items-center text-sm ">
           <ion-icon name="pizza-outline" class="h-5 w-5 mr-2"></ion-icon>
           Fast Food
         </div>
       </button>
-      <button class="bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-full">
-        Fruits
+      <button (click)="filtrarPorCategoria(2)"
+        class="bg-gray-100 text-sm  text-gray-700 font-semibold px-2 py-2 rounded-full"
+      >
+        Bebidas
       </button>
-      <button class="bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-full">
-        Drinks
+      <button (click)="filtrarPorCategoria(3)"
+        class="bg-gray-100 text-sm  text-gray-700 font-semibold px-2 py-2 rounded-full"
+      >
+        Postres
+      </button>
+      <button (click)="filtrarPorCategoria(null)"
+        class="bg-gray-100 text-gray-700 text-sm font-semibold px-2 py-2 rounded-full"
+      >
+        Todos
       </button>
       <!-- Más categorías -->
     </div>
 
-    <div class="mx-auto max-w-3xl px-4 py-10   lg:max-w-7xl lg:px-8">
-
-      <div class=" grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-
-        <div *ngFor="let product of products" class="rounded-[17px] border border-1 border-gray-200 shadow-sm ">
-          <div class="aspect-h-1 aspect-w-1 pr-4 pt-2  pl-4 overflow-hidden rounded-[20px]  lg:aspect-none group-hover:opacity-75 lg:h-25" (click)="obtenerDetalleProducto(product.idProducto)">
-            <img [src]="product.Imagen" alt="Front of men&#039;s Basic Tee in black."
-              class="h-30 w-50  rounded-[20px] object-cover object-center ">
+    <div class="mx-auto max-w-3xl px-4 py-10 lg:max-w-7xl lg:px-8">
+      <div
+        class="grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+      >
+        <div
+          *ngFor="let product of filteredProducts"
+          class="rounded-[17px] border border-1 border-gray-200 shadow-sm"
+        >
+          <div
+            class="aspect-h-1 aspect-w-1 pr-4 pt-2 pl-4 overflow-hidden rounded-[20px] lg:aspect-none group-hover:opacity-75 lg:h-25"
+            (click)="obtenerDetalleProducto(product.idProducto)"
+          >
+            <img
+              [src]="product.Imagen"
+              alt="Front of men&#039;s Basic Tee in black."
+              class="h-30 w-50 rounded-[20px] object-cover object-center"
+            />
           </div>
           <div class="p-2">
-            <h2 class="text-lg font-bold truncate"> {{product.Nombre}}</h2>
-            <p class="text-sm text-gray-500">Fresh Tomato</p>
+            <h2 class="text-lg font-bold truncate">{{product.Nombre}}</h2>
+            <p class="text-sm text-gray-500">{{product.nombreCategoria}}</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold">${{product.Precio}}</span>
-              <div class="flex items-center space-x-1"> <!-- Ajusta el valor de `space-x-1` según la separación deseada -->
-                <ion-button id="open-product-modal" name="open-product-modal" expand="block" size="small" color="success" class="z-10" (click)="obtenerDetalleProducto(product.idProducto)">
-                  <ion-icon slot="icon-only" name="eye" size="medium" color="light"></ion-icon>
-                </ion-button>
-                
+              <div class="flex items-center space-x-1">
+                <!-- Ajusta el valor de `space-x-1` según la separación deseada -->
                 <div *ngIf="userData.idUsuario !== 0">
-                  <ion-button expand="block" size="small" color="success" class="z-10" (click)="agregarAlCarrito(product.idProducto)">
-                    <ion-icon slot="icon-only" name="cart" size="medium" color="light"></ion-icon>
+                  <ion-button
+                    expand="block"
+                    size="small"
+                    color="success"
+                    class="z-10"
+                    (click)="agregarAlCarrito(product.idProducto)"
+                  >
+                    <ion-icon name="add-outline" class="text-white"></ion-icon>
                   </ion-button>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
-
       </div>
+
       <div #productPage>
-        <ion-modal #productModal [canDismiss]="canDismiss" [presentingElement]="productPage">
+        <ion-modal
+          #productModal
+          [canDismiss]="canDismiss"
+          [presentingElement]="productPage"
+        >
           <ng-template>
             <ion-content>
-              <div *ngIf="productoSelect !== null" class="m-4">
-                <div class="p-5">
-                  <div class="flex justify-end">
-                    <ion-buttons slot="end">
-                      <ion-button (click)="productModal.dismiss()">
-                        <ion-icon name="close-outline" class="h-10 w-10"></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
-                  </div>
-                  <div class="mb-2">
-                    <img [src]="productoSelect.Imagen" alt="Producto" class="h-1/2 w-full">
+              <div *ngIf="productoSelect !== null" class="">
+                <!-- Botón de cerrar en la esquina izquierda -->
+                <div class="p-2">
+                  <div class="flex justify-start ml-2 mt[15px]">
+                    <ion-icon
+                      (click)="productModal.dismiss()"
+                      name="chevron-back-outline"
+                      class="h-10 w-10 text-black rounded-md"
+                    ></ion-icon>
                   </div>
                 </div>
                 <div *ngIf="userData.idUsuario !== 0" >
@@ -89,36 +122,189 @@
                   <div class="flex items-center mr-4">
                     <ion-icon name="alarm-outline" class="h-7 w-7 mr-2"></ion-icon>
                     <span>40 minutos</span>
-                  </div>
-                  <div class="flex items-center">
-                    <ion-icon name="fast-food-outline" class="h-7 w-7 mr-2"></ion-icon>
-                    <span>Platillo fuerte</span>
-                  </div>
-                </div>
-                <div class="ml-3 p-5">
-                  <div class="flex justify-between items-center">
-                    <p class="font-bold text-start text-2xl mt-4">{{ productoSelect.Nombre }}</p>
-                    <p class="font-bold text-end text-3xl text-red-700">${{ productoSelect.Precio }}</p>
-                  </div>
-                  <p class="font-normal text-start text-md mt-4">{{ productoSelect.Descripcion }}</p>
-                  <p class="font-normal text-start text-md mt-4">{{ productoSelect.Ingredientes }}</p>
-                </div>
-                <div class="p-5 ml-3 flex justify-center w-full bg-white">
-                  <div class="flex justify-between m-2 items-center">
-                    <span class="font-bold text-2xl mr-2">{{productoSelect.Disponibilidad}} disponibles</span>
-                  </div>
+                <p class="text-xl text-center font-bold mt-[20px]">
+                  {{ productoSelect?.Nombre }}
+                </p>
+                <!-- Imagen con sombra debajo -->
+                <div
+                  class="w-[220px] h-[220px] rounded-full mt-4 shadow-bottom relative mx-auto"
+                >
+                  <img
+                    [src]="productoSelect?.Imagen"
+                    alt="Platillo"
+                    class="w-full h-full object-cover rounded-full"
+                  />
                 </div>
 
+                <!-- Botón de "Me gusta" en la parte superior derecha -->
+                <div class="absolute top-2 right-5">
+                  <ion-button shape="round" color="success">
+                    <ion-icon
+                      slot="icon-only"
+                      name="heart"
+                      class="text-white"
+                    ></ion-icon>
+                  </ion-button>
+                </div>
 
+                <div class="p-4 ml-4 mr-4">
+
+                      <!-- Información de tiempo y porción -->
+                      <div class="flex justify-between mt-4">
+                        <div class="flex space-x-4 mr-2">
+                          <div class="text-center">
+                            <ion-icon
+                              name="time-outline"
+                              class="text-green-500 text-2xl"
+                            ></ion-icon>
+                            <p class="text-gray-800 mt-1">45 min</p>
+                          </div>
+                          <div class="text-center">
+                            <ion-icon
+                              name="people-outline"
+                              class="text-green-500 text-2xl"
+                            ></ion-icon>
+                            <p class="text-gray-800 mt-1">1 porción</p>
+                          </div>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                          <span class="text-xl">4.5</span>
+                          <ion-icon
+                            name="star"
+                            class="w-6 h-6 text-yellow-600"
+                          ></ion-icon>
+                        </div>
+                      </div>
+
+                  <!-- Título del platillo y calificación -->
+                  <div class="flex justify-between items-center mt-2">
+                    <div>
+                      <p class="text-md text-gray-600 mt-2">Categoria: Platillo</p>
+                    </div>
+                    <span class="ml-2 font-bold text-2xl text-green-400">
+                      ${{ productoSelect?.Precio }}
+                    </span>
+                  </div>
+
+
+                  <!-- Detalles del platillo -->
+                  <div class="mt-4">
+                    <p class="font-bold text-lg text-gray-800">Detalle</p>
+                    <p class="text-md text-gray-600">
+                      {{ productoSelect.Descripcion }}
+                    </p>
+                  </div>
+
+                  <!-- Lista de ingredientes -->
+                  <div class="mt-4">
+                    <h3 class="font-bold text-lg text-gray-800">
+                      Ingredientes
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-5">
+                      <li
+                        *ngFor="let ingrediente of (productoSelect?.Ingredientes || '').split(',')"
+                      >
+                        {{ ingrediente.trim() }}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Botón de agregar al carrito -->
+                  <div class="flex justify-between items-center mt-6">
+                    <ion-button
+                      (click)="agregarAlCarrito(productoSelect.idProducto)"
+                      class="btn-primary text-white w-full font-bold text-[14px]"
+                    >
+                      Agregar al carrito
+                    </ion-button>
+                  </div>
+                </div>
               </div>
             </ion-content>
           </ng-template>
         </ion-modal>
       </div>
-      
+
+      <ion-modal  class="product-modal" trigger="open-modal2" [initialBreakpoint]="1" [breakpoints]="[0, 1]" >
+        <ng-template>
+          <div class="block flex flex-col ">
+            <h2 class="text-lg font-bold text-gray-800 mb-4">Filtros de Productos</h2>
+          
+            <div class="flex items-center mb-4">
+              <input type="checkbox" id="mayorMenor" [(ngModel)]="ordenarMayorMenor" (change)="ordenarCheck('mayor')" class="w-5 h-5 text-green-500 rounded focus:ring-0 cursor-pointer mr-2" />
+              <label for="mayorMenor" class="text-gray-700 font-medium">Ordenar de Mayor a Menor</label>
+            </div>
+            
+            <!-- Ordenar de Menor a Mayor -->
+            <div class="flex items-center mb-4">
+              <input type="checkbox" id="menorMayor" [(ngModel)]="ordenarMenorMayor" (change)="ordenarCheck('menor')" class="w-5 h-5 text-green-500 rounded focus:ring-0 cursor-pointer mr-2" />
+              <label for="menorMayor" class="text-gray-700 font-medium">Ordenar de Menor a Mayor</label>
+            </div>
+          
+            <!-- Precio mínimo -->
+            <div class="flex flex-col mb-4">
+              <label for="minPrice" class="text-gray-600 font-semibold">Precio mínimo: ${{ minPrice }}</label>
+              <input
+                type="range"
+                id="minPrice"
+                min="0"
+                max="1000"
+                [(ngModel)]="minPrice"
+                (input)="filtrarProductos()"
+                class="w-full mt-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-500"
+              />
+            </div>
+          
+            <!-- Precio máximo -->
+            <div class="flex flex-col mb-4">
+              <label for="maxPrice" class="text-gray-600 font-semibold">Precio máximo: ${{ maxPrice }}</label>
+              <input
+                type="range"
+                id="maxPrice"
+                min="0"
+                max="1000"
+                [(ngModel)]="maxPrice"
+                (input)="filtrarProductos()"
+                class="w-full mt-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-500"
+              />
+            </div>
+          
+        
+          </div>
+          
+        </ng-template>
+      </ion-modal>
 
     </div>
   </div>
-
 </ion-content>
 
+<style>
+  .shadow-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Ajusta esta posición si quieres que la sombra esté más cerca o lejos de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .block {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    padding: 40px;
+  }
+
+  .product-modal::part(content) {
+    --height: auto;
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+}
+
+
+
+</style>

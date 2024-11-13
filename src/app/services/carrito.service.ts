@@ -12,7 +12,7 @@ export class CarritoService {
   obtenerCarritoUrl = environment.apiEndpointCarrito.obtenerCarrito;
   quitarDelCarritoUrl = environment.apiEndpointCarrito.quitardelCarrito;
   agregarAlCarritoUrl = environment.apiEndpointCarrito.agregarAlCarrito;
-
+  quitarTodoCarrito = environment.apiEndpointCarrito.quitarTodosdelCarrito;
   constructor(private http: HttpClient) { }
 
   
@@ -53,11 +53,6 @@ export class CarritoService {
     formData.append('idUsuario', idUsuario.toString());
     formData.append('idProducto', idProducto.toString());
   
-    // console.log('Datos enviados:', {
-    //   idUsuario,
-    //   idProducto,
-    // });
-  
     return fetch(`${this.agregarAlCarritoUrl}`, {
       method: 'POST',
       body: formData,
@@ -73,7 +68,27 @@ export class CarritoService {
       });
   }
   
-  
+  async elimarTodosProductos(idUsuario:number,idProducto:number, idCarritoProductos: number): Promise<boolean>{
+    const formData = new FormData();
+    formData.append('idUsuario', idUsuario.toString());
+    formData.append('idProducto', idProducto.toString());
+    formData.append('idCarritoProductos', idCarritoProductos.toString());
+
+     return this.http.post(this.quitarTodoCarrito, formData)
+      .toPromise()
+      .then((result: any) => {
+        if (result === "Exito") {
+          return true;
+        }else{
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Error during login:', error);
+        return false;
+      });
+  }
+
 
  
 }

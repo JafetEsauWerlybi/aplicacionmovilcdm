@@ -1,0 +1,93 @@
+<ion-content >
+
+    <ion-card-header>
+      <ion-card-title>Formulario de Evaluación</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>¿Cómo sentiste la navegación entre productos?</ion-label>
+        <ion-radio-group>
+          <ion-item>
+            <ion-label>Muy fácil</ion-label>
+            <ion-radio slot="start" value="muy_facil"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fácil</ion-label>
+            <ion-radio slot="start" value="facil"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Punto medio</ion-label>
+            <ion-radio slot="start" value="punto_medio"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Complicado</ion-label>
+            <ion-radio slot="start" value="complicado"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Muy complicado</ion-label>
+            <ion-radio slot="start" value="muy_complicado"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>¿Cómo fue tu experiencia con la compra de platillos?</ion-label>
+        <ion-radio-group>
+          <ion-item>
+            <ion-label>Muy fácil</ion-label>
+            <ion-radio slot="start" value="muy_facil"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fácil</ion-label>
+            <ion-radio slot="start" value="facil"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Punto medio</ion-label>
+            <ion-radio slot="start" value="punto_medio"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Complicado</ion-label>
+            <ion-radio slot="start" value="complicado"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Muy complicado</ion-label>
+            <ion-radio slot="start" value="muy_complicado"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>¿Cómo sentiste el proceso de pago en la aplicación?</ion-label>
+        <ion-radio-group>
+          <ion-item>
+            <ion-label>Muy fácil</ion-label>
+            <ion-radio slot="start" value="muy_facil"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fácil</ion-label>
+            <ion-radio slot="start" value="facil"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Punto medio</ion-label>
+            <ion-radio slot="start" value="punto_medio"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Complicado</ion-label>
+            <ion-radio slot="start" value="complicado"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Muy complicado</ion-label>
+            <ion-radio slot="start" value="muy_complicado"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item>
+    </ion-card-content>
+ 
+
+  <div class="ion-padding">
+    <ion-button (click)="cerrarEncuesta(false)" color="danger" expand="block">Cerrar</ion-button>
+    <ion-button  (click)="cerrarEncuesta(true)" color="primary" expand="block">Enviar Evaluación</ion-button>
+  </div>
+</ion-content>
+

@@ -1,4 +1,5 @@
 <ion-content [fullscreen]="true" class="ion-padding">
+  <ion-icon (click)="goToCarrito()" class="bg-gray-100  rounded-lg h-6 w-6" name="chevron-back-outline"></ion-icon>
   <div class="mx-8 my-5 text-left"> <!-- Alineación a la izquierda -->
     <img class="mb-5" src="../../assets/logo.png">
     <h1 class="p-1 font-bold text-2xl mt-15 mb-2">Paga tu compra</h1>
@@ -13,11 +14,11 @@
   </div>
   <div *ngIf="userData !== null">
 
-    <ion-button expand="block" class="ion-margin-top" (click)="paymentSheet()">Pagar con tarjeta de credito</ion-button>
+    <ion-button expand="block" class="ion-button-pagos ion-margin-top" (click)="paymentSheet()">Pagar con tarjeta de credito</ion-button>
   
     <!-- <ion-button expand="block" class="ion-margin-top" (click)="paymentFlow()">Pagar con tarjeta de credito/debito</ion-button> -->
     
-    <ion-button expand="block" class="ion-margin-top" (click)="googlePay()">Pagar con Google Play</ion-button>
+    <ion-button expand="block" class="ion-button-pagos ion-margin-top" (click)="googlePay()">Pagar con Google Play</ion-button>
   </div>
  
 </ion-content>
