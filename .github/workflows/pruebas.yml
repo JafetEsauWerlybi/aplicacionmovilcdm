@@ -49,8 +49,12 @@ jobs:
         env:
           CI: true
 
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:8100 --timeout 300000 # Espera hasta 5 minutos
+      - name: Wait for app server to be available
+        run: npx wait-on http://localhost:8100 --timeout 600000 # Espera hasta 10 minutos
+
+      - name: Start server and run Cypress
+        run: npx start-server-and-test "ionic build && npx http-server ./www -p 8100" http://localhost:8100 "cypress run"
+      
       # 8. Ejecutar Linter
       - name: Run lint
         run: npm run lint 
