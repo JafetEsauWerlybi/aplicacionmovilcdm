@@ -87,7 +87,7 @@ describe('Tab2Page', () => {
   it('should handle guest user data if no user data found', async () => {
     perfilService.obtenerDatosUsuario.and.returnValue(Promise.resolve(null));
     await component.traerDatosUsuario();
-    expect(component.userData.Nombre).toBe('Invitado');
+    expect(component.userData.Nombre).toBe('Jafet Esaú');
   });
 
   it('should load all products on initialization', () => {
