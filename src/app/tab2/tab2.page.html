@@ -100,128 +100,120 @@
           [canDismiss]="canDismiss"
           [presentingElement]="productPage"
         >
-          <ng-template>
-            <ion-content>
-              <div *ngIf="productoSelect !== null" class="">
-                <!-- Botón de cerrar en la esquina izquierda -->
-                <div class="p-2">
-                  <div class="flex justify-start ml-2 mt[15px]">
-                    <ion-icon
-                      (click)="productModal.dismiss()"
-                      name="chevron-back-outline"
-                      class="h-10 w-10 text-black rounded-md"
-                    ></ion-icon>
-                  </div>
-                </div>
-                <div *ngIf="userData.idUsuario !== 0" >
-                  <button class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700" (click)="agregarAlCarrito(productoSelect.idProducto)" >
-                    Agregar al carrito<ion-icon name="cart"  class="mr-2"></ion-icon> 
-                  </button>
-                </div>
-                <div class="flex mt-2 pr-4 pl-4 ml-3 items-center">
-                  <div class="flex items-center mr-4">
-                    <ion-icon name="alarm-outline" class="h-7 w-7 mr-2"></ion-icon>
-                    <span>40 minutos</span>
-                <p class="text-xl text-center font-bold mt-[20px]">
-                  {{ productoSelect?.Nombre }}
-                </p>
-                <!-- Imagen con sombra debajo -->
-                <div
-                  class="w-[220px] h-[220px] rounded-full mt-4 shadow-bottom relative mx-auto"
-                >
-                  <img
-                    [src]="productoSelect?.Imagen"
-                    alt="Platillo"
-                    class="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-
-                <!-- Botón de "Me gusta" en la parte superior derecha -->
-                <div class="absolute top-2 right-5">
-                  <ion-button shape="round" color="success">
-                    <ion-icon
-                      slot="icon-only"
-                      name="heart"
-                      class="text-white"
-                    ></ion-icon>
-                  </ion-button>
-                </div>
-
-                <div class="p-4 ml-4 mr-4">
-
-                      <!-- Información de tiempo y porción -->
-                      <div class="flex justify-between mt-4">
-                        <div class="flex space-x-4 mr-2">
-                          <div class="text-center">
-                            <ion-icon
-                              name="time-outline"
-                              class="text-green-500 text-2xl"
-                            ></ion-icon>
-                            <p class="text-gray-800 mt-1">45 min</p>
-                          </div>
-                          <div class="text-center">
-                            <ion-icon
-                              name="people-outline"
-                              class="text-green-500 text-2xl"
-                            ></ion-icon>
-                            <p class="text-gray-800 mt-1">1 porción</p>
-                          </div>
-                        </div>
-                        <div class="flex items-center space-x-1">
-                          <span class="text-xl">4.5</span>
-                          <ion-icon
-                            name="star"
-                            class="w-6 h-6 text-yellow-600"
-                          ></ion-icon>
-                        </div>
-                      </div>
-
-                  <!-- Título del platillo y calificación -->
-                  <div class="flex justify-between items-center mt-2">
-                    <div>
-                      <p class="text-md text-gray-600 mt-2">Categoria: Platillo</p>
-                    </div>
-                    <span class="ml-2 font-bold text-2xl text-green-400">
-                      ${{ productoSelect?.Precio }}
-                    </span>
-                  </div>
-
-
-                  <!-- Detalles del platillo -->
-                  <div class="mt-4">
-                    <p class="font-bold text-lg text-gray-800">Detalle</p>
-                    <p class="text-md text-gray-600">
-                      {{ productoSelect.Descripcion }}
-                    </p>
-                  </div>
-
-                  <!-- Lista de ingredientes -->
-                  <div class="mt-4">
-                    <h3 class="font-bold text-lg text-gray-800">
-                      Ingredientes
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-5">
-                      <li
-                        *ngFor="let ingrediente of (productoSelect?.Ingredientes || '').split(',')"
-                      >
-                        {{ ingrediente.trim() }}
-                      </li>
-                    </ul>
-                  </div>
-
-                  <!-- Botón de agregar al carrito -->
-                  <div class="flex justify-between items-center mt-6">
-                    <ion-button
-                      (click)="agregarAlCarrito(productoSelect.idProducto)"
-                      class="btn-primary text-white w-full font-bold text-[14px]"
-                    >
-                      Agregar al carrito
-                    </ion-button>
-                  </div>
+        <ng-template>
+          <ion-content>
+            <div *ngIf="productoSelect !== null" class="modal-content">
+        
+              <!-- Botón de cerrar en la esquina izquierda -->
+              <div class="p-2">
+                <div class="flex justify-start ml-2 mt-[15px]">
+                  <ion-icon
+                    (click)="productModal.dismiss()"
+                    name="chevron-back-outline"
+                    class="h-10 w-10 text-black rounded-md"
+                  ></ion-icon>
                 </div>
               </div>
-            </ion-content>
-          </ng-template>
+        
+              <!-- Botón de agregar al carrito solo si el usuario tiene un ID -->
+              <div *ngIf="userData.idUsuario !== 0">
+                <button
+                  class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700"
+                  (click)="agregarAlCarrito(productoSelect.idProducto)"
+                >
+                  Agregar al carrito<ion-icon name="cart" class="mr-2"></ion-icon>
+                </button>
+              </div>
+        
+              <!-- Sección de detalles del producto -->
+              <div class="flex mt-2 pr-4 pl-4 ml-3 items-center">
+                <div class="flex items-center mr-4">
+                  <ion-icon name="alarm-outline" class="h-7 w-7 mr-2"></ion-icon>
+                  <span>40 minutos</span>
+                </div>
+              </div>
+        
+              <p class="text-xl text-center font-bold mt-[20px]">
+                {{ productoSelect?.Nombre }}
+              </p>
+        
+              <!-- Imagen del producto -->
+              <div class="w-[220px] h-[220px] rounded-full mt-4 shadow-bottom relative mx-auto">
+                <img
+                  [src]="productoSelect?.Imagen"
+                  alt="Platillo"
+                  class="w-full h-full object-cover rounded-full"
+                />
+              </div>
+        
+              <!-- Botón de "Me gusta" en la parte superior derecha -->
+              <div class="absolute top-2 right-5">
+                <ion-button shape="round" color="success">
+                  <ion-icon slot="icon-only" name="heart" class="text-white"></ion-icon>
+                </ion-button>
+              </div>
+        
+              <div class="p-4 ml-4 mr-4">
+                <!-- Información de tiempo y porción -->
+                <div class="flex justify-between mt-4">
+                  <div class="flex space-x-4 mr-2">
+                    <div class="text-center">
+                      <ion-icon name="time-outline" class="text-green-500 text-2xl"></ion-icon>
+                      <p class="text-gray-800 mt-1">45 min</p>
+                    </div>
+                    <div class="text-center">
+                      <ion-icon name="people-outline" class="text-green-500 text-2xl"></ion-icon>
+                      <p class="text-gray-800 mt-1">1 porción</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-1">
+                    <span class="text-xl">4.5</span>
+                    <ion-icon name="star" class="w-6 h-6 text-yellow-600"></ion-icon>
+                  </div>
+                </div>
+        
+                <!-- Título y precio del platillo -->
+                <div class="flex justify-between items-center mt-2">
+                  <div>
+                    <p class="text-md text-gray-600 mt-2">Categoria: Platillo</p>
+                  </div>
+                  <span class="ml-2 font-bold text-2xl text-green-400">
+                    ${{ productoSelect?.Precio }}
+                  </span>
+                </div>
+        
+                <!-- Detalles del platillo -->
+                <div class="mt-4">
+                  <p class="font-bold text-lg text-gray-800">Detalle</p>
+                  <p class="text-md text-gray-600">
+                    {{ productoSelect.Descripcion }}
+                  </p>
+                </div>
+        
+                <!-- Lista de ingredientes -->
+                <div class="mt-4">
+                  <h3 class="font-bold text-lg text-gray-800">Ingredientes</h3>
+                  <ul class="list-disc list-inside text-gray-700 mt-2 ml-5">
+                    <li *ngFor="let ingrediente of (productoSelect?.Ingredientes || '').split(',')">
+                      {{ ingrediente.trim() }}
+                    </li>
+                  </ul>
+                </div>
+        
+                <!-- Botón de agregar al carrito -->
+                <div class="flex justify-between items-center mt-6">
+                  <ion-button
+                    (click)="agregarAlCarrito(productoSelect.idProducto)"
+                    class="btn-primary text-white w-full font-bold text-[14px]"
+                  >
+                    Agregar al carrito
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-content>
+        </ng-template>
+        
         </ion-modal>
       </div>
 

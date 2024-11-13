@@ -29,7 +29,7 @@ describe('Tab2Page - Pruebas de la página de productos', () => {
     });
   
     it('Debería cargar los productos en la página', () => {
-      cy.contains('Fresh Tomato', { timeout: 10000 }).should('be.visible');
+      cy.contains('Platillo', { timeout: 10000 }).should('be.visible');
       console.log('Productos cargados correctamente.');
     });
     

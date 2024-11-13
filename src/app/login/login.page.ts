@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, isPlatform, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { UserStorageService } from '../services/user-storage.service';  
 import { LoginService } from '../services/login.service';

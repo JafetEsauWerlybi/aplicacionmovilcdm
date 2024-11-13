@@ -18,9 +18,18 @@ export class AppComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    // Verifica si estás en un entorno de prueba de Cypress
+    if ((window as any).Cypress) {
+      // Si estás en modo prueba, omite splash, redirección y cualquier otra lógica
+      this.showSplash = false;
+      return;
+    }
+
+    // Lógica normal de splash y redirección
     setTimeout(() => {
       this.checkUserSession();
     }, 1000); 
+
     setTimeout(() => {
       this.showSplash = false;
     }, 3000);

@@ -4,19 +4,9 @@ describe("Prueba E2E para el flujo de login", () => {
         return false;
       }
       return true;
+      
     });
-  
-    it("Debe permitir que un usuario inicie sesión con credenciales válidas", () => {
-      cy.visit("/login");
-  
-      cy.get('input[name="email"]').type("20210671@uthh.edu.mx");
-      cy.get('input[name="password"]').type("@D0lf0_2021");
-        
-      cy.get('button[type="submit"]').click({ force: true });
-  
-      cy.url({ timeout: 10000 }).should("include", "/home/tabs/tab1");
-  
-    });
+
   
     it("Debe mostrar un mensaje de error con credenciales inválidas", () => {
       cy.visit("/login");
@@ -31,10 +21,26 @@ describe("Prueba E2E para el flujo de login", () => {
     });
 
     it("Debe redirigir", () => {
-        cy.visit("/login");
-        cy.get('a[name="redirigir"]').click({ force: true });
-    
-        cy.url({ timeout: 10000 }).should("include", "/recuperar");
-    
-      });
+      cy.visit("/login");
+      cy.get('a[name="redirigir"]').click({ force: true });
+  
+      cy.url({ timeout: 10000 }).should("include", "/recuperar");
+  
+    });
+
+    it("Debe permitir que un usuario inicie sesión con credenciales válidas", () => {
+      cy.visit("/login");
+  
+      cy.get('input[name="email"]').type("20210671@uthh.edu.mx");
+      cy.get('input[name="password"]').type("@D0lf0_2021");
+        
+      cy.get('button[type="submit"]').click({ force: true });
+  
+      cy.url({ timeout: 10000 }).should("include", "/home/tabs/tab1");
+  
+    });
+  
+
+
+
   });

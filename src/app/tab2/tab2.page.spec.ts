@@ -3,8 +3,7 @@ import { Tab2Page } from './tab2.page';
 import { ProductsService } from '../services/products.service';
 import { PerfilService } from '../services/perfil.service';
 import { CarritoService } from '../services/carrito.service';
-import { AlertasService } from '../services/alertas.service';
-import { IonicModule, IonModal } from '@ionic/angular';
+import { IonicModule, IonModal, ToastController } from '@ionic/angular';
 import { of } from 'rxjs';
 import { Products } from '../interface/products';
 import { UserData } from '../interface/userData';
@@ -16,7 +15,7 @@ describe('Tab2Page', () => {
   let productsService: jasmine.SpyObj<ProductsService>;
   let perfilService: jasmine.SpyObj<PerfilService>;
   let carritoService: jasmine.SpyObj<CarritoService>;
-  let alertaService: jasmine.SpyObj<AlertasService>;
+  let toastController: jasmine.SpyObj<ToastController>;
 
   const mockProduct: Products = {
     idProducto: 1,
@@ -28,7 +27,8 @@ describe('Tab2Page', () => {
     FechaIntroduccion: '2023-01-01',
     Categoria: 1,
     Estado: 'Available',
-    Imagen: 'https://example.com/pizza.png'
+    Imagen: 'https://example.com/pizza.png',
+    nombreCategoria: 'Platillo' // Añadir esta propiedad para evitar el error en la prueba
   };
 
   const mockUserData: UserData = {
@@ -48,7 +48,7 @@ describe('Tab2Page', () => {
     const productsServiceSpy = jasmine.createSpyObj('ProductsService', ['getALLProducts', 'obtenerDetallesProducto']);
     const perfilServiceSpy = jasmine.createSpyObj('PerfilService', ['obtenerDatosUsuario']);
     const carritoServiceSpy = jasmine.createSpyObj('CarritoService', ['agregarAlCarrito']);
-    const alertaServiceSpy = jasmine.createSpyObj('AlertasService', ['presentAlert']);
+    const toastControllerSpy = jasmine.createSpyObj('ToastController', ['create']);
 
     TestBed.configureTestingModule({
       declarations: [Tab2Page],
@@ -57,7 +57,7 @@ describe('Tab2Page', () => {
         { provide: ProductsService, useValue: productsServiceSpy },
         { provide: PerfilService, useValue: perfilServiceSpy },
         { provide: CarritoService, useValue: carritoServiceSpy },
-        { provide: AlertasService, useValue: alertaServiceSpy },
+        { provide: ToastController, useValue: toastControllerSpy },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
@@ -67,10 +67,15 @@ describe('Tab2Page', () => {
     productsService = TestBed.inject(ProductsService) as jasmine.SpyObj<ProductsService>;
     perfilService = TestBed.inject(PerfilService) as jasmine.SpyObj<PerfilService>;
     carritoService = TestBed.inject(CarritoService) as jasmine.SpyObj<CarritoService>;
-    alertaService = TestBed.inject(AlertasService) as jasmine.SpyObj<AlertasService>;
+    toastController = TestBed.inject(ToastController) as jasmine.SpyObj<ToastController>;
+
+    // Configurar mock para el Toast
+    toastController.create.and.returnValue(Promise.resolve({
+      present: jasmine.createSpy('present')
+    } as any));
+
     component.userData = mockUserData; // Asegura que userData esté inicializado
     component.productModal = jasmine.createSpyObj('IonModal', ['present']);
-
   }));
 
   it('should create the component', () => {
@@ -97,11 +102,18 @@ describe('Tab2Page', () => {
     expect(productsService.getALLProducts).toHaveBeenCalled();
   });
 
-  it('should add product to cart and show alert on success', async () => {
+  it('should add product to cart and show toast on success', async () => {
     carritoService.agregarAlCarrito.and.returnValue(Promise.resolve(true));
     await component.agregarAlCarrito(mockProduct.idProducto);
     expect(carritoService.agregarAlCarrito).toHaveBeenCalledWith(component.userData.idUsuario, mockProduct.idProducto);
-    expect(alertaService.presentAlert).toHaveBeenCalledWith('Producto agregado');
+    
+    // Verifica que el toast sea creado y presentado
+    expect(toastController.create).toHaveBeenCalledWith({
+      message: 'Se agrego al carrito',
+      duration: 1500,
+      position: "top"
+    });
+    expect((await toastController.create()).present).toHaveBeenCalled();
   });
 
   it('should fetch product details and open modal', () => {
