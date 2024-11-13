@@ -76,7 +76,7 @@ describe('Tab2Page - Pruebas de la página de productos', () => {
   });
 
   it('Debería de mostrar idUsuario', () => {
-    cy.contains('Jafet Esau', { timeout: 10000 })
+    cy.contains('Jafet Esaú', { timeout: 10000 })
       .scrollIntoView()
       .should('be.visible');
     cy.log('Usuario parseado correctamente.');
