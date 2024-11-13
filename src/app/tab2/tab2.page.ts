@@ -124,7 +124,6 @@ export class Tab2Page implements OnInit {
       // Intenta obtener los datos del usuario desde el perfilService
       this.userData = await this.perfilService.obtenerDatosUsuario();
   
-      // Verifica si los datos son nulos o vacíos
       if (!this.userData || !this.userData.idUsuario) {
         // Si no hay datos del usuario, asigna los datos de usuario invitado
         this.userData = {
