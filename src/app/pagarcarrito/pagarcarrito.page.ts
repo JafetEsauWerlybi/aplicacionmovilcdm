@@ -139,6 +139,8 @@ export class PagarcarritoPage implements OnInit {
       });
 
       const data$ = this.httpPost(this.data);
+      console.log(data$);
+
       const { paymentIntent, ephemeralKey, customer } = await lastValueFrom(data$);
 
       await Stripe.createPaymentSheet({
@@ -147,6 +149,8 @@ export class PagarcarritoPage implements OnInit {
         customerEphemeralKeySecret: ephemeralKey,
         merchantDisplayName: 'Esau',
       });
+      console.log(paymentIntent, ephemeralKey, customer);
+      
 
       const result = await Stripe.presentPaymentSheet();
       if (result && result.paymentResult === PaymentSheetEventsEnum.Completed) {
@@ -182,8 +186,8 @@ export class PagarcarritoPage implements OnInit {
        paymentIntentClientSecret: paymentIntent,
  
        paymentSummaryItems: [{
-         label: 'Esau',
-         amount: 1099.00
+         label: this.userData.Nombre,
+         amount: this.total * 100
        }],
        merchantIdentifier: 'Esau',
        countryCode: 'MX',

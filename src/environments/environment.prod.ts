@@ -38,5 +38,6 @@ export const environment = {
     secretKey: 'sk_test_51Q2bhrL6Uwo5yj7nX5MZoB2jI2ZDX26rikyTJEaBCql5V8qsV3lGvnnKoBcgFajYfXlVo6cSE0mglGVOeIIAHjDk00AZ2yCxD1'
   },
   api:'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/'
+
 };
 
