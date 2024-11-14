@@ -29,13 +29,12 @@
       <button (click)="filtrarPorCategoria(1)"
         class="bg-yellow-400 text-white font-semibold px-2 py-2 rounded-full"
       >
-        <div class="flex items-center text-sm ">
-          <ion-icon name="pizza-outline" class="h-5 w-5 mr-2"></ion-icon>
+       
           Fast Food
-        </div>
+    
       </button>
       <button (click)="filtrarPorCategoria(2)"
-        class="bg-gray-100 text-sm  text-gray-700 font-semibold px-2 py-2 rounded-full"
+        class="bg-green-400 text-sm  text-white font-semibold px-2 py-2 rounded-full"
       >
         Bebidas
       </button>
@@ -45,7 +44,7 @@
         Postres
       </button>
       <button (click)="filtrarPorCategoria(null)"
-        class="bg-gray-100 text-gray-700 text-sm font-semibold px-2 py-2 rounded-full"
+        class="bg-blue-400 text-white text-sm font-semibold px-2 py-2 rounded-full"
       >
         Todos
       </button>
@@ -105,34 +104,17 @@
             <div *ngIf="productoSelect !== null" class="modal-content">
         
               <!-- Botón de cerrar en la esquina izquierda -->
-              <div class="p-2">
-                <div class="flex justify-start ml-2 mt-[15px]">
+              <div class="p-2 flex justify-between items-center">
+                <div class="flex justify-start ml-2">
                   <ion-icon
                     (click)="productModal.dismiss()"
                     name="chevron-back-outline"
-                    class="h-10 w-10 text-black rounded-md"
+                    class="h-6 w-6 text-black rounded-md"
                   ></ion-icon>
                 </div>
+                
               </div>
-        
-              <!-- Botón de agregar al carrito solo si el usuario tiene un ID -->
-              <div *ngIf="userData.idUsuario !== 0">
-                <button
-                  class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700"
-                  (click)="agregarAlCarrito(productoSelect.idProducto)"
-                >
-                  Agregar al carrito<ion-icon name="cart" class="mr-2"></ion-icon>
-                </button>
-              </div>
-        
-              <!-- Sección de detalles del producto -->
-              <div class="flex mt-2 pr-4 pl-4 ml-3 items-center">
-                <div class="flex items-center mr-4">
-                  <ion-icon name="alarm-outline" class="h-7 w-7 mr-2"></ion-icon>
-                  <span>40 minutos</span>
-                </div>
-              </div>
-        
+                
               <p class="text-xl text-center font-bold mt-[20px]">
                 {{ productoSelect?.Nombre }}
               </p>
@@ -146,38 +128,38 @@
                 />
               </div>
         
-              <!-- Botón de "Me gusta" en la parte superior derecha -->
-              <div class="absolute top-2 right-5">
-                <ion-button shape="round" color="success">
-                  <ion-icon slot="icon-only" name="heart" class="text-white"></ion-icon>
-                </ion-button>
-              </div>
+             
         
-              <div class="p-4 ml-4 mr-4">
+              <div class="p-4 ml-2 mr-2">
                 <!-- Información de tiempo y porción -->
                 <div class="flex justify-between mt-4">
-                  <div class="flex space-x-4 mr-2">
+                  <div class="flex space-x-4">
                     <div class="text-center">
-                      <ion-icon name="time-outline" class="text-green-500 text-2xl"></ion-icon>
-                      <p class="text-gray-800 mt-1">45 min</p>
+                      <ion-icon name="time-outline" class="text-green-500 "></ion-icon>
+                      <p class="text-gray-800 text-sm mt-1">45 min</p>
                     </div>
                     <div class="text-center">
-                      <ion-icon name="people-outline" class="text-green-500 text-2xl"></ion-icon>
-                      <p class="text-gray-800 mt-1">1 porción</p>
+                      <ion-icon name="people-outline" class="text-green-500 "></ion-icon>
+                      <p class="text-gray-800 text-sm mt-1">1 porción</p>
                     </div>
                   </div>
-                  <div class="flex items-center space-x-1">
-                    <span class="text-xl">4.5</span>
-                    <ion-icon name="star" class="w-6 h-6 text-yellow-600"></ion-icon>
+                  <div *ngIf="userData.idUsuario !== 0">
+                  
+                    <ion-button fill="clear"
+                      class="carrito-btn-primary flex items-center justify-between text-xs  text-white"
+                      (click)="agregarAlCarrito(productoSelect.idProducto)"
+                    >
+                   Agregar al carrito
+                    </ion-button>
                   </div>
                 </div>
         
                 <!-- Título y precio del platillo -->
-                <div class="flex justify-between items-center mt-2">
+                <div class="flex items-center justify-between items-center mt-2">
                   <div>
                     <p class="text-md text-gray-600 mt-2">Categoria: Platillo</p>
                   </div>
-                  <span class="ml-2 font-bold text-2xl text-green-400">
+                  <span class=" font-bold text-2xl text-green-400">
                     ${{ productoSelect?.Precio }}
                   </span>
                 </div>
@@ -200,15 +182,7 @@
                   </ul>
                 </div>
         
-                <!-- Botón de agregar al carrito -->
-                <div class="flex justify-between items-center mt-6">
-                  <ion-button
-                    (click)="agregarAlCarrito(productoSelect.idProducto)"
-                    class="btn-primary text-white w-full font-bold text-[14px]"
-                  >
-                    Agregar al carrito
-                  </ion-button>
-                </div>
+            
               </div>
             </div>
           </ion-content>
@@ -295,7 +269,7 @@
     --height: auto;
   border-top-left-radius: 20px !important;
   border-top-right-radius: 20px !important;
-}
+  }
 
 
 

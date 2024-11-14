@@ -42,6 +42,12 @@ export class LoginPage implements OnInit {
     this.nav.navigateForward('/');
   }
 
+
+  recuperarContra(){
+    this.nav.navigateForward('/recuperar');
+  }
+
+
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }

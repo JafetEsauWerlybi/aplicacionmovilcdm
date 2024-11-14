@@ -36,6 +36,9 @@ export class Tab3Page implements OnInit {
   pagarGoTo(){
     this.nav.navigateForward('/pagarcarrito');
   }
+  verProductos(){
+    this.nav.navigateForward('/home/tabs/tab2');
+  }
 
   async traerDatosUsuario() {
     try {

@@ -64,17 +64,18 @@
     </div>
 
     <!-- Botón de Pagar Carrito -->
-    <div *ngIf="carrito.length > 0" class="w-full flex justify-center mt-6">
-      <a (click)="pagarGoTo()" class="w-full bg-green-600 text-white py-3 rounded-lg text-center font-bold hover:bg-green-700">
+    
+    <div *ngIf="carrito.length > 0" class="w-full  mt-6">
+      <ion-button (click)="pagarGoTo()" class="ion-button-login w-full">
         Pagar Carrito
-      </a>
+      </ion-button>
     </div>
 
     <!-- Botón de Ver Productos cuando el carrito está vacío -->
-    <div *ngIf="noPedidos && !loading" class="w-full flex justify-center mt-4">
-      <a href="home/tabs/tab2" class="w-full bg-green-600 text-white py-3 rounded-lg text-center font-bold hover:bg-green-700">
-         Ver productos
-      </a>
+    <div *ngIf="noPedidos && !loading" class="w-full rounded-[10px] flex justify-center mt-4">
+      <ion-button (click)="verProductos()" class="ion-button-login w-full">
+        Ver productos
+      </ion-button>
     </div>
   </div>
 </ion-content>

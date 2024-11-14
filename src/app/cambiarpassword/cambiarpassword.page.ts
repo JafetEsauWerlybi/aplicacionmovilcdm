@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CambiarpasswordService } from '../services/cambiarpassword.service';
 import { AlertasService } from '../services/alertas.service';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-cambiarpassword',
   templateUrl: './cambiarpassword.page.html',
@@ -14,7 +14,7 @@ export class CambiarpasswordPage implements OnInit {
   passwordVisible: boolean = false;  // Controla la visibilidad del campo de contraseña
   passwordVerifiedVisible: boolean = false;  // Controla la visibilidad del campo de confirmación de contraseña
 
-  constructor(private cambiarpwdService : CambiarpasswordService, private alertasService : AlertasService) { }
+  constructor(private cambiarpwdService : CambiarpasswordService, private alertasService : AlertasService, private nav:NavController) { }
 
   ngOnInit() {
     this.bol = false;
@@ -23,6 +23,9 @@ export class CambiarpasswordPage implements OnInit {
     this.passwordVisible = !this.passwordVisible;
   }
 
+  cancelar(){
+    this.nav.navigateForward("/login")
+  }
   // Alterna la visibilidad del campo de confirmación de contraseña
   togglePasswordVerifiedVisibility() {
     this.passwordVerifiedVisible = !this.passwordVerifiedVisible;

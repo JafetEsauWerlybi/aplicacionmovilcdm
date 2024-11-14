@@ -5,7 +5,7 @@
     <div class="absolute inset-0 bg-black opacity-5"></div>
 
     <div class="flex justify-between absolute top-4 left-5 right-5 z-20">
-      <ion-icon (click)="inicio()" name="arrow-back-outline" class="h-9 w-9 text-white"></ion-icon>
+      <ion-icon (click)="inicio()" name="chevron-back-outline" class="h-6 w-6 text-white"></ion-icon>
     </div>
 
   </div>
@@ -37,7 +37,7 @@
           
           
         <div class="justify-end items-end mt-5">
-          <p class="text-gray-600 text-end"><a href="recuperar" name="redirigir">Olvide mi contraseña</a></p>
+          <p class="text-gray-600 text-end"><a (click)="recuperarContra()" name="redirigir">Olvide mi contraseña</a></p>
         </div>
         <div class="justify-center mt-5">
           <ion-button type="submit" class="ion-button-login shadow-lg w-full text-white font-bold text-lg ">Iniciar sesión</ion-button>

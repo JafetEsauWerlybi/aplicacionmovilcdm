@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertasService } from '../services/alertas.service';
 import { RecuperarpasswordService } from '../services/recuperarpassword.service';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-recuperar',
   templateUrl: './recuperar.page.html',
@@ -11,7 +11,7 @@ export class RecuperarPage implements OnInit {
   
   email: string = '';
   bol : boolean = false;
-  constructor(private alertaService: AlertasService, private recuperarService: RecuperarpasswordService) { }
+  constructor(private alertaService: AlertasService, private recuperarService: RecuperarpasswordService,private nav:NavController) { }
 
   ngOnInit() {
     this.bol = false;
@@ -29,6 +29,10 @@ export class RecuperarPage implements OnInit {
     }else{
       this.alertaService.presentAlertFalla('Captura tus datos correctamente por favor');
     }
+  }
+
+  atras(){
+    this.nav.navigateForward("/login")
   }
 
   
