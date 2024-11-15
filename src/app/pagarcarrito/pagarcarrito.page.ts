@@ -196,6 +196,7 @@ export class PagarcarritoPage implements OnInit {
  
      const result = await Stripe.presentGooglePay();
      if (result.paymentResult === GooglePayEventsEnum.Completed) {
+      this.pedidosS.crearPedidos(this.userData.idUsuario, this.carrito[0].idCarrito,this.total ,this.direcciones[0].DireccionID);
        this.splitAndJoin(paymentIntent);
      }
    }
