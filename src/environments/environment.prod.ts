@@ -9,6 +9,8 @@ export const environment = {
     verificarToken: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/VerificarToken',
     cambiarPassword: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/RecuperarContrasena',
     traerToken: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerToken?Telefono=',
+    verificarEncuest:'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/VerificarUsuarioFeedBack?IdUsuario=',
+    insertarRespuestaFeedback:'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/InsertarRespuesta'
   },
   apiEndpointsProductos:{
     traerProductos: 'https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos',

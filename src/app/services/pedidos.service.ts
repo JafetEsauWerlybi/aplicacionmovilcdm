@@ -36,7 +36,7 @@ export class PedidosService {
         }
         if (result === "Exito") {
           this.alertasS.presentAlert('Exito en su compra')
-          this.router.navigate(['/home/tabs/tab1']);
+          //this.router.navigate(['/home/tabs/tab1']);
         }
         return false;
       })

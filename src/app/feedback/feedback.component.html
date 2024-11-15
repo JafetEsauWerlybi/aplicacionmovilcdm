@@ -5,80 +5,59 @@
     </ion-card-header>
 
     <ion-card-content>
+      <!-- Pregunta 1 -->
       <ion-item>
-        <ion-label>¿Cómo sentiste la navegación entre productos?</ion-label>
-        <ion-radio-group>
+        <ion-label>¿Qué te parecio el catalogo de platillos ?</ion-label>
+        <ion-radio-group [(ngModel)]="responses.catalogExperience">
           <ion-item>
-            <ion-label>Muy fácil</ion-label>
-            <ion-radio slot="start" value="muy_facil"></ion-radio>
+            <ion-label>Bien</ion-label>
+            <ion-radio slot="start" value="3"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-label>Fácil</ion-label>
-            <ion-radio slot="start" value="facil"></ion-radio>
+            <ion-label>Medio</ion-label>
+            <ion-radio slot="start" value="2"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-label>Punto medio</ion-label>
-            <ion-radio slot="start" value="punto_medio"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Complicado</ion-label>
-            <ion-radio slot="start" value="complicado"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Muy complicado</ion-label>
-            <ion-radio slot="start" value="muy_complicado"></ion-radio>
+            <ion-label>Difícil</ion-label>
+            <ion-radio slot="start" value="1"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-item>
-
+  
+      <!-- Pregunta 2 -->
       <ion-item>
         <ion-label>¿Cómo fue tu experiencia con la compra de platillos?</ion-label>
-        <ion-radio-group>
+        <ion-radio-group [(ngModel)]="responses.orderProcess">
           <ion-item>
-            <ion-label>Muy fácil</ion-label>
-            <ion-radio slot="start" value="muy_facil"></ion-radio>
+            <ion-label>Bien</ion-label>
+            <ion-radio slot="start" value="3"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-label>Fácil</ion-label>
-            <ion-radio slot="start" value="facil"></ion-radio>
+            <ion-label>Medio</ion-label>
+            <ion-radio slot="start" value="2"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-label>Punto medio</ion-label>
-            <ion-radio slot="start" value="punto_medio"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Complicado</ion-label>
-            <ion-radio slot="start" value="complicado"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Muy complicado</ion-label>
-            <ion-radio slot="start" value="muy_complicado"></ion-radio>
+            <ion-label>Difícil</ion-label>
+            <ion-radio slot="start" value="1"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-item>
-
+  
+      <!-- Pregunta 3 -->
       <ion-item>
         <ion-label>¿Cómo sentiste el proceso de pago en la aplicación?</ion-label>
-        <ion-radio-group>
+        <ion-radio-group [(ngModel)]="responses.paymentProcess">
           <ion-item>
-            <ion-label>Muy fácil</ion-label>
-            <ion-radio slot="start" value="muy_facil"></ion-radio>
+            <ion-label>Bien</ion-label>
+            <ion-radio slot="start" value="3"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-label>Fácil</ion-label>
-            <ion-radio slot="start" value="facil"></ion-radio>
+            <ion-label>Medio</ion-label>
+            <ion-radio slot="start" value="2"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-label>Punto medio</ion-label>
-            <ion-radio slot="start" value="punto_medio"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Complicado</ion-label>
-            <ion-radio slot="start" value="complicado"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Muy complicado</ion-label>
-            <ion-radio slot="start" value="muy_complicado"></ion-radio>
+            <ion-label>Difícil</ion-label>
+            <ion-radio slot="start" value="1"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-item>
@@ -86,8 +65,8 @@
  
 
   <div class="ion-padding">
-    <ion-button (click)="cerrarEncuesta(false)" color="danger" expand="block">Cerrar</ion-button>
-    <ion-button  (click)="cerrarEncuesta(true)" color="primary" expand="block">Enviar Evaluación</ion-button>
+    <ion-button (click)="cerrarEncuesta()" color="danger" expand="block">Cerrar</ion-button>
+    <ion-button  (click)="enviarFeecback()" color="primary" expand="block">Enviar Evaluación</ion-button>
   </div>
 </ion-content>
 

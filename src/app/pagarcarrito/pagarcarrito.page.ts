@@ -101,6 +101,17 @@ export class PagarcarritoPage implements OnInit {
     }
   }
 
+  async verificarEncuesta(){
+    const exito= await this.perfilService.verificarEncuesta(this.userData.idUsuario);
+    console.log("valor si ya contesto encuesta: ", exito);
+    if (!exito) {
+      this.openSurveyModal();
+    }else{
+      this.nav.navigateForward('/home/tabs/tab2')
+    }
+
+  }
+
   async cargarCarrito() {
     if (!this.userData || !this.userData.idUsuario) {
       console.error('Error: idUsuario no está disponible');
@@ -157,15 +168,13 @@ export class PagarcarritoPage implements OnInit {
         this.splitAndJoin(paymentIntent);
         console.log(this.userData.idUsuario, this.carrito[0].idCarrito,this.total ,this.direcciones[0].DireccionID)
         this.pedidosS.crearPedidos(this.userData.idUsuario, this.carrito[0].idCarrito,this.total ,this.direcciones[0].DireccionID);
-        const encuestaRespondida = localStorage.getItem('encuestaRespondida');
-        if (!encuestaRespondida) {
-          this.openSurveyModal();
-        }
+        this.verificarEncuesta();
       }
     } catch (e) {
       console.log(e);
     }
   }
+
 
  
    async googlePay() {
