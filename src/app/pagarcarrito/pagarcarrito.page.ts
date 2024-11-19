@@ -112,6 +112,7 @@ export class PagarcarritoPage implements OnInit {
 
   }
 
+
   async cargarCarrito() {
     if (!this.userData || !this.userData.idUsuario) {
       console.error('Error: idUsuario no está disponible');

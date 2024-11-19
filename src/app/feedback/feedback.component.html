@@ -1,72 +1,152 @@
-<ion-content >
-
-    <ion-card-header>
-      <ion-card-title>Formulario de Evaluación</ion-card-title>
+<div class="bg-gray-100 flex justify-center items-center inset-0 h-screen">
+ 
+  <ion-card class="feedback-card">
+    <div class="flex justify-end p-2">
+      <ion-icon (click)="cerrarEncuesta()" name="close" class="text-black h-6 w-6"></ion-icon>
+    </div>
+    <ion-card-header class="feedback-header">
+      <ion-item lines="none" class="header-item">
+        <ion-label class="feedback-title">Ayudanos a mejorar</ion-label>
+        <ion-label class="question-count">Question {{ currentQuestionIndex + 1 }}/{{ questions.length }}</ion-label>
+      </ion-item>
     </ion-card-header>
 
     <ion-card-content>
-      <!-- Pregunta 1 -->
-      <ion-item>
-        <ion-label>¿Qué te parecio el catalogo de platillos ?</ion-label>
-        <ion-radio-group [(ngModel)]="responses.catalogExperience">
-          <ion-item>
-            <ion-label>Bien</ion-label>
-            <ion-radio slot="start" value="3"></ion-radio>
+      
+      <div class="question-section">
+        <div class="question-number">{{ questions[currentQuestionIndex].id }}</div>
+        <ion-label class="question-text">
+          {{ questions[currentQuestionIndex].question }}
+        </ion-label>
+        <p class="subtext">{{ questions[currentQuestionIndex].subtext }}</p>
+      </div>
+
+      <!-- Opciones con Emojis -->
+      <ion-radio-group
+      [(ngModel)]="responses[questions[currentQuestionIndex].field]"
+      class="emoji-grid small-radio-group"
+    >
+      <ion-row>
+        <ion-col
+          size="auto"
+          class="emoji-option"
+          *ngFor="let option of questions[currentQuestionIndex].options; let i = index"
+        >
+          <ion-item lines="none" class="small-radio-item">
+            <ion-radio slot="start" [value]="i + 1" class="small-radio"></ion-radio>
+            <span class="emoji small-emoji">{{ option }}</span>
           </ion-item>
-          <ion-item>
-            <ion-label>Medio</ion-label>
-            <ion-radio slot="start" value="2"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Difícil</ion-label>
-            <ion-radio slot="start" value="1"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-item>
-  
-      <!-- Pregunta 2 -->
-      <ion-item>
-        <ion-label>¿Cómo fue tu experiencia con la compra de platillos?</ion-label>
-        <ion-radio-group [(ngModel)]="responses.orderProcess">
-          <ion-item>
-            <ion-label>Bien</ion-label>
-            <ion-radio slot="start" value="3"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Medio</ion-label>
-            <ion-radio slot="start" value="2"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Difícil</ion-label>
-            <ion-radio slot="start" value="1"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-item>
-  
-      <!-- Pregunta 3 -->
-      <ion-item>
-        <ion-label>¿Cómo sentiste el proceso de pago en la aplicación?</ion-label>
-        <ion-radio-group [(ngModel)]="responses.paymentProcess">
-          <ion-item>
-            <ion-label>Bien</ion-label>
-            <ion-radio slot="start" value="3"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Medio</ion-label>
-            <ion-radio slot="start" value="2"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Difícil</ion-label>
-            <ion-radio slot="start" value="1"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+    
+      <!-- Botón -->
+      <ion-button expand="block" shape="round" class="ion-button-pagos"  (click)="nextQuestion()">
+        Siguiente
+      </ion-button>
     </ion-card-content>
- 
+  </ion-card>
+</div>
 
-  <div class="ion-padding">
-    <ion-button (click)="cerrarEncuesta()" color="danger" expand="block">Cerrar</ion-button>
-    <ion-button  (click)="enviarFeecback()" color="primary" expand="block">Enviar Evaluación</ion-button>
-  </div>
-</ion-content>
 
+
+<style>
+
+
+.feedback-card {
+  width: 90%; /* Tamaño responsivo */
+  max-width: 400px; /* Limita el ancho máximo */
+  border-radius: 15px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-header {
+  background-color: #ffffff; /* Fondo blanco para el encabezado */
+  border-radius: 15px 15px 0 0;
+}
+
+.header-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feedback-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.question-count {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.question-section {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.question-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #7c4dff;
+}
+
+.question-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.subtext {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.emoji-grid {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+
+.emoji-option ion-button {
+  font-size: 2rem;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.next-button {
+  margin-top: 1rem;
+  background-color: #7c4dff;
+  color: white;
+}
+
+/* Reducir tamaño general del radio group */
+.small-radio-group {
+  font-size: 0.8rem; /* Reducir tamaño de fuente general */
+}
+
+/* Reducir tamaño de cada radio item */
+.small-radio-item {
+  --inner-padding: 0; /* Reducir el padding interno del ion-item */
+}
+
+/* Reducir tamaño del radio */
+.small-radio {
+  --size: 16px; /* Tamaño del radio button */
+  --background: #7c4dff; /* Color del botón de radio */
+}
+
+/* Ajustar tamaño de los emojis */
+.small-emoji {
+  font-size: 1.2rem; /* Ajustar tamaño del emoji */
+}
+
+/* Centrar y alinear */
+.emoji-option {
+  text-align: center;
+}
+
+</style>

@@ -22,9 +22,46 @@ export class FeedbackComponent  implements OnInit {
     private nav:NavController
   ) {}
 
+  questions = [
+    {
+      id: 1,
+      question: '¿Qué te parecio el catalogo de platillos ?',
+      subtext: 'Comparte tu estado de ánimo para ayudarnos a entender.',
+      options: ['😔', '😐','😁'],
+      field: 'catalogExperience',
+    },
+    {
+      id: 2,
+      question: '¿Cómo fue tu experiencia con la compra de platillos?',
+      subtext: 'Háganos saber para mejorar su experiencia.',
+      options: ['😔', '😐', '😁'],
+      field: 'orderProcess',
+    },
+    {
+      id: 3,
+      question: '¿Cómo sentiste el proceso de pago en la aplicación?',
+      subtext: 'Tus respuestas nos ayudan a crecer.',
+      options: ['😔', '😐', '😁'],
+      field: 'paymentProcess',
+
+    },
+  ];
+
+  currentQuestionIndex = 0; // Índice de la pregunta actual
+
+  // Función para pasar a la siguiente pregunta
+  nextQuestion() {
+    if (this.currentQuestionIndex < this.questions.length - 1) {
+      this.currentQuestionIndex++;
+    } else {
+      this.enviarFeecback();
+    }
+  }
+
   async cerrarEncuesta() {
   
     await this.modalController.dismiss();
+    
   }
   async ngOnInit() {
     await this.traerDatosUsuario();
