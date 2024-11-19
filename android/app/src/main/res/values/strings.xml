@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">casamariscomovil</string>
+    <string name="title_activity_main">casamariscomovil</string>
+    <string name="package_name">com.mariscomovil.movil</string>
+    <string name="custom_url_scheme">com.mariscomovil.movil</string>
+
+    <string name="publishable_key">pk_test_51Q2bhrL6Uwo5yj7nQJIPVxVbUWiz48NmkIB4rwvZkVFGZoFO9mEjngGKbeTzG1KtQCgWIiwhgjv3T4KrQDDgIUeO002GVJR4iS</string>
+    <bool name="enable_google_pay">true</bool>
+    <string name="country_code">MX</string>
+    <string name="merchant_display_name">Esau Store</string>
+    <bool name="google_pay_is_testing">true</bool>
+</resources>
