@@ -16,7 +16,9 @@ export class PerfilService {
   tokenUrl = environment.apiEndpoints.traerToken;
   userData1!: UserData;
   obtenerDireccionURL = environment.apiEndpoints.obtenerDireccion;
-  
+  verificarEncuestaURL=environment.apiEndpoints.verificarEncuest;
+  enviarRespuestaURL=environment.apiEndpoints.insertarRespuestaFeedback;
+
   constructor(private http: HttpClient,
     private userStorage: UserStorageService,
     private router: Router
@@ -40,6 +42,40 @@ export class PerfilService {
   
   traerDirecciones(idUsuario : number){
     return this.http.get<Direccion[]>(this.obtenerDireccionURL+ idUsuario);
+  }
+
+  verificarEncuesta(idUsuario: number): Promise<boolean> {
+    return this.http.get(this.verificarEncuestaURL + idUsuario)
+      .toPromise()
+      .then((result: any) => {
+        return result.Existe === true ? true : false;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        return false;
+      });
+  }
+
+  enviarRespuesta(calificacion: string, idPregunta: number, idUsuario: number): Promise<boolean> {
+
+    const formData = new FormData();
+    formData.append("Calificacion", calificacion);
+    formData.append("IdPregunta", idPregunta.toString());
+    formData.append("IdUsuario", idUsuario.toString());
+
+    return this.http.post<any>(this.enviarRespuestaURL, formData)
+    .toPromise()
+      .then((result: any) => {
+        if (result === "Respuesta insertada correctamente.") {
+          return true;
+        }else{
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Error during login:', error);
+        return false;
+      });
   }
   
 }
